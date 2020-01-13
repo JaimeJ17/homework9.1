@@ -10,12 +10,9 @@
         <input matInput placeholder="Password" formControlName="password" type="password" />
         <app-form-error [control]="getControl('password')"></app-form-error>
       </mat-form-field>
-    </div>
-    <div class="login-options">
-      <button #loginButton [disabled]="!loginForm.valid" (click)="loginCheck(loginButton)">
+      <button mat-raised-button color="warn" class="login-button" #loginButton [disabled]="!loginForm.valid" (click)="loginCheck(loginButton)">
         Login
       </button>
-      <button >Register</button>
     </div>
   </div>
 </form>

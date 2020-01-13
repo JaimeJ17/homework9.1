@@ -7,6 +7,7 @@ import { MatInputModule } from '@angular/material/input';
 import { NavigationComponent } from './components/navigation/navigation.component';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatButtonModule } from '@angular/material/button';
 
 
 
@@ -18,7 +19,8 @@ import { MatToolbarModule } from '@angular/material/toolbar';
     ReactiveFormsModule,
     MatInputModule,
     MatMenuModule,
-    MatToolbarModule
+    MatToolbarModule,
+    MatButtonModule
   ],
   exports:[
     NavigationComponent
