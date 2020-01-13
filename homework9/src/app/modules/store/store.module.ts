@@ -11,10 +11,11 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { ProductCardComponent } from './components/product-card/product-card.component';
 import { MatIconModule } from '@angular/material/icon';
+import { SidebarComponent } from './components/sidebar/sidebar.component';
 
 
 @NgModule({
-  declarations: [LoginComponent, FormErrorComponent, NavigationComponent, ProductCardComponent],
+  declarations: [LoginComponent, FormErrorComponent, NavigationComponent, ProductCardComponent, SidebarComponent],
   imports: [
     CommonModule,
     FormsModule,
