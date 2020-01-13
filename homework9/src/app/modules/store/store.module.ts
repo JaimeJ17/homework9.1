@@ -22,7 +22,7 @@ import { MatButtonModule } from '@angular/material/button';
     MatToolbarModule,
     MatButtonModule
   ],
-  exports:[
+  exports: [
     NavigationComponent
   ]
 })
