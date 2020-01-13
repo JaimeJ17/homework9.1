@@ -8,11 +8,13 @@ import { NavigationComponent } from './components/navigation/navigation.componen
 import { MatMenuModule } from '@angular/material/menu';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
+import { MatCardModule } from '@angular/material/card';
+import { ProductCardComponent } from './components/product-card/product-card.component';
 
 
 
 @NgModule({
-  declarations: [LoginComponent, FormErrorComponent, NavigationComponent],
+  declarations: [LoginComponent, FormErrorComponent, NavigationComponent, ProductCardComponent],
   imports: [
     CommonModule,
     FormsModule,
@@ -20,7 +22,8 @@ import { MatButtonModule } from '@angular/material/button';
     MatInputModule,
     MatMenuModule,
     MatToolbarModule,
-    MatButtonModule
+    MatButtonModule,
+    MatCardModule
   ],
   exports: [
     NavigationComponent
