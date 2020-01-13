@@ -10,7 +10,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { ProductCardComponent } from './components/product-card/product-card.component';
-
+import { MatIconModule } from '@angular/material/icon';
 
 
 @NgModule({
@@ -23,7 +23,8 @@ import { ProductCardComponent } from './components/product-card/product-card.com
     MatMenuModule,
     MatToolbarModule,
     MatButtonModule,
-    MatCardModule
+    MatCardModule,
+    MatIconModule
   ],
   exports: [
     NavigationComponent
