@@ -1,0 +1,10 @@
+<div *ngIf="control?.invalid && control?.touched  || form?.errors?.passwordDoesntMatch && form?.touched" class="error-container">
+  <mat-error *ngIf="control?.errors?.required">This field is required</mat-error>
+  <mat-error *ngIf="control?.errors?.minlength">min lenght is 4 char</mat-error>
+  <mat-error *ngIf="control?.errors?.maxlength">max lenght is 15 char</mat-error>
+  <mat-error *ngIf="control?.errors?.pattern">Only letters for this field</mat-error>
+  <mat-error *ngIf="control?.errors?.email">Email should be valid</mat-error>
+  <mat-error *ngIf="control?.errors?.email">Example:</mat-error>
+  <mat-error class="email-error" *ngIf="control?.errors?.email">Example@example.com</mat-error>
+  <mat-error *ngIf="form?.errors?.passwordDoesntMatch">Passwords need to match</mat-error>
+</div>
