@@ -11,11 +11,11 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { ProductCardComponent } from './components/product-card/product-card.component';
 import { MatIconModule } from '@angular/material/icon';
-import { SidebarComponent } from './components/sidebar/sidebar.component';
+import { MatSidenavModule } from '@angular/material/sidenav';
 
 
 @NgModule({
-  declarations: [LoginComponent, FormErrorComponent, NavigationComponent, ProductCardComponent, SidebarComponent],
+  declarations: [LoginComponent, FormErrorComponent, NavigationComponent, ProductCardComponent ],
   imports: [
     CommonModule,
     FormsModule,
@@ -25,7 +25,8 @@ import { SidebarComponent } from './components/sidebar/sidebar.component';
     MatToolbarModule,
     MatButtonModule,
     MatCardModule,
-    MatIconModule
+    MatIconModule,
+    MatSidenavModule
   ],
   exports: [
     NavigationComponent
