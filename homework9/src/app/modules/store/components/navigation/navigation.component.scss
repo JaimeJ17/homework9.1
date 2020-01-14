@@ -5,8 +5,16 @@
 
 .logo-container{
   display: flex;
+  align-items: center;
   img{
     width: 60px;
     height: 60px;
   }
+}
+
+.menu{
+  width: 40px;
+  padding: 0px;
+  max-width: 20px;
+  min-width: 20px;
 }

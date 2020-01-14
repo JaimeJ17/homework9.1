@@ -12,10 +12,13 @@ import { MatCardModule } from '@angular/material/card';
 import { ProductCardComponent } from './components/product-card/product-card.component';
 import { MatIconModule } from '@angular/material/icon';
 import { MatSidenavModule } from '@angular/material/sidenav';
+import { SidebarComponent } from './components/sidebar/sidebar.component';
+import { AppRoutingModule } from 'src/app/app-routing.module';
+import { RouterModule } from '@angular/router';
 
 
 @NgModule({
-  declarations: [LoginComponent, FormErrorComponent, NavigationComponent, ProductCardComponent ],
+  declarations: [LoginComponent, FormErrorComponent, NavigationComponent, ProductCardComponent, SidebarComponent ],
   imports: [
     CommonModule,
     FormsModule,
@@ -26,10 +29,12 @@ import { MatSidenavModule } from '@angular/material/sidenav';
     MatButtonModule,
     MatCardModule,
     MatIconModule,
-    MatSidenavModule
+    MatSidenavModule,
+    RouterModule
   ],
   exports: [
-    NavigationComponent
+    NavigationComponent,
+    SidebarComponent
   ]
 })
 export class StoreModule { }
