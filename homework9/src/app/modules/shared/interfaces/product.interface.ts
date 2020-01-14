@@ -9,7 +9,7 @@ export interface Product {
   likes_down_count: string;
   published_at: string;
 
-  master: {
+  master?: {
     id: string;
     sku: string;
     price: string;
@@ -23,13 +23,13 @@ export interface Product {
     position: string;
   };
 
-  category: {
+  category?: {
     id: string;
     slug: string;
     name: string;
   };
-  image: {
-    id: 0;
+  image?: {
+    id: string;
     url: string;
   };
 }
