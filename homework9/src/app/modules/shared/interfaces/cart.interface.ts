@@ -4,14 +4,14 @@ export interface Cart {
   number?: string;
   status?: string;
   total?: string;
-  total_items?: string;
+  total_items?: number;
   completed_at?: string;
   created_at?: string;
   items?: [
     {
       id: string;
       product_variant_id: string;
-      quantity: string;
+      quantity: number;
     }?
   ];
 }

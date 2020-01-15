@@ -11,12 +11,11 @@ import { getProduct } from '../../../../store/selectors/store.selectors';
   styleUrls: ['./product.component.scss']
 })
 export class ProductComponent implements OnInit {
-  $product: Observable<Product>;
+  product: Product;
 
   constructor(private store: Store<IAppState>) { }
 
   ngOnInit() {
-    this.$product = this.store.select(getProduct);
+    this.store.select(getProduct).subscribe(data => this.product = data);
   }
-
 }

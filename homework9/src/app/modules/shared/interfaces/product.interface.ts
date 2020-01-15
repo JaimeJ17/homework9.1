@@ -4,9 +4,9 @@ export interface Product {
   name?: string;
   description?: string;
   active?: string;
-  likes_count?: string;
-  likes_up_count?: string;
-  likes_down_count?: string;
+  likes_count?: number;
+  likes_up_count?: number;
+  likes_down_count?: number;
   published_at?: string;
 
   master?: {
@@ -14,7 +14,7 @@ export interface Product {
     sku: string;
     price: string;
     promotional_price: string;
-    stock: string;
+    stock: number;
     weight: string;
     height: string;
     width: string;
