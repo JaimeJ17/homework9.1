@@ -9,6 +9,11 @@ export const getProducts = createSelector(
   (state: IProductState) => state.products,
 );
 
+export const getProduct = createSelector(
+  getProductSate,
+  (state: IProductState) => state.currentProduct,
+);
+
 export const getCategories = createSelector(
   getProductSate,
   (state: IProductState) => state.categories,
