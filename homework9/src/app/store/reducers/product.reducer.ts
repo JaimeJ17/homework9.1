@@ -27,7 +27,7 @@ export const productReducer = (
     case EProductActions.GetProduct: {
       return {
         ...state,
-        currentProduct: state.products.filter(
+        currentProduct: state.products.find(
           prodcut => prodcut.id === action.payload
         ),
         error: null

@@ -10,8 +10,7 @@ import { loginState } from './constants/login-initialState.constant';
 
 export interface IProductState {
   products: Product[];
-  filterProducts: Product[];
-  currentProduct: Product[];
+  currentProduct: Product;
   categories: Category[];
   error: any;
   cart: Cart;
@@ -20,7 +19,6 @@ export interface IProductState {
 
 export const initialProductSate: IProductState = {
   products: [],
-  filterProducts: [],
   error: null,
   categories: [],
   currentProduct: null,
