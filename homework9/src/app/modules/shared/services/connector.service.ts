@@ -1,5 +1,6 @@
+import { Category } from './../interfaces/category.interface';
 import { Product } from './../interfaces/product.interface';
-import { product } from './../constants/url.constant';
+import { product, category } from './../constants/url.constant';
 import { Error } from './../interfaces/error.interface';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
@@ -60,6 +61,21 @@ export class ConnectorService {
         catchError(() => {
           this.loading.changeState(false);
           return throwError(false);
+        })
+      );
+  }
+
+  category(): Observable<Data> {
+    this.loading.changeState(true);
+    return this.http
+      .get(category)
+      .pipe(
+        finalize(() => {
+          this.loading.changeState(false);
+        }),
+        catchError(() => {
+          this.loading.changeState(false);
+          return throwError(null);
         })
       );
   }
