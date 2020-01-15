@@ -68,9 +68,7 @@ export class ConnectorService {
   }
 
   productCategory(filter: string): Observable<Data> {
-    console.log(filter);
-    const url = productCategory.replace(/newfilter/, filter);
-    console.log(url);
+    const url = productCategory.replace('newfilter', filter);
     this.loading.changeState(true);
     return this.http
       .get(url)
