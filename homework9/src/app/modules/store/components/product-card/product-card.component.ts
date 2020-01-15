@@ -7,6 +7,7 @@ import { IAppState } from 'src/app/store/state/app.state';
 import { Store } from '@ngrx/store';
 import { GetProductsAction } from '../../../../store/actions/product.actions';
 import { ConnectorService } from '../../../shared/services/connector.service';
+import { GetLoginAction, LogOutAction } from '../../../../store/actions/login.action';
 
 @Component({
   selector: 'app-product-card',
@@ -28,6 +29,7 @@ export class ProductCardComponent implements OnInit {
     this.connector.login({email: 'trainee3@example.com', password: 'Trainee$3'})
       .subscribe( data => console.log(data));
     this.store.dispatch(new GetProductsAction());
+    this.store.dispatch(new GetLoginAction({email: 'trainee3@example.com', password: 'Trainee$3'}));
 
     this.store.dispatch(new AddCartAction({ id: 'a', quantity: 'aa', product_variant_id: 'aa' }));
     this.store.dispatch(new AddCartAction({ id: 'a', quantity: 'aa', product_variant_id: 'bb' }));
@@ -37,7 +39,8 @@ export class ProductCardComponent implements OnInit {
     }, 5000);
 
     setTimeout(() => {
-      this.store.dispatch(new SearchProductsActions('fa'));
+      this.store.dispatch(new SearchProductsActions('chocol'));
+      this.store.dispatch(new LogOutAction());
     }, 8000);
   }
 }

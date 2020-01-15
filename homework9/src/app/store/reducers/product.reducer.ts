@@ -6,6 +6,9 @@ import {
 import { IProductState, initialProductSate } from '../state/product.state';
 import { ProductActions, EProductActions } from '../actions/product.actions';
 import { ELoginActions, LoginActions } from '../actions/login.action';
+import { LocalstorageService } from '../../modules/shared/services/localstorage.service';
+
+const storage: LocalstorageService = new LocalstorageService();
 
 export const productReducer = (
   state: IProductState = initialProductSate,
@@ -30,12 +33,10 @@ export const productReducer = (
         error: null
       };
     }
-    case EProductActions.SearchProducts: {
+    case EProductActions.SearchProductsSuccess: {
       return {
         ...state,
-        filterProducts: state.products.filter(prodcut =>
-          prodcut.name.includes(action.payload)
-        ),
+        filterProducts: action.payload,
         error: null
       };
     }
@@ -61,9 +62,24 @@ export const productReducer = (
       };
     }
     case ELoginActions.GetLoginsSuccess: {
+      console.log(action.payload);
       return {
         ...state, login: action.payload
-      }
+      };
+    }
+    case ELoginActions.GetLoginsFailure: {
+      storage.removefile('user');
+      storage.removefile('token');
+      return {
+        ...state, login: { user: null, token: null}
+      };
+    }
+    case ELoginActions.LogOut: {
+      storage.removefile('user');
+      storage.removefile('token');
+      return {
+        ...state, login: { user: null, token: null}
+      };
     }
     default:
       return state;

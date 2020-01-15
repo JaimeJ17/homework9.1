@@ -2,7 +2,7 @@ import { LoginResponse } from './../interfaces/login-response.interface';
 import { Data } from './../interfaces/data.interface';
 import { Category } from './../interfaces/category.interface';
 import { Product } from './../interfaces/product.interface';
-import { product, category, productCategory } from './../constants/url.constant';
+import { product, category, productCategory, productSearch } from './../constants/url.constant';
 import { Error } from './../interfaces/error.interface';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
@@ -38,6 +38,7 @@ export class ConnectorService {
   }
 
   login(user: User): Observable<LoginResponse> {
+    console.log(user);
     this.loading.changeState(true);
     return this.http
       .post(login, {data: user})
@@ -69,6 +70,23 @@ export class ConnectorService {
 
   productCategory(filter: string): Observable<Data> {
     const url = productCategory.replace('newfilter', filter);
+    this.loading.changeState(true);
+    return this.http
+      .get(url)
+      .pipe(
+        finalize(() => {
+          this.loading.changeState(false);
+        }),
+        catchError(() => {
+          this.loading.changeState(false);
+          return throwError(false);
+        })
+      );
+  }
+
+  productSearch(filter: string): Observable<Data> {
+    const url = productSearch.replace('newfilter', filter);
+    console.log(url);
     this.loading.changeState(true);
     return this.http
       .get(url)

@@ -9,7 +9,7 @@ import { LocalstorageService } from '../../modules/shared/services/localstorage.
 
 
 @Injectable()
-export class CategoriesEffects {
+export class LoginEffects {
   constructor(
     private _actions: Actions,
     private _LoginService: ConnectorService,
@@ -21,17 +21,11 @@ export class CategoriesEffects {
     ofType<GetLoginAction>(ELoginActions.GetLogin),
     switchMap((user) => this._LoginService.login(user.payload)),
     switchMap(user => of(new GetLoginSuccessAction(user.data))),
+    tap((user) => {
+      this._StorageService.savefile(user.payload.user, 'user');
+      this._StorageService.savefile(user.payload.token, 'token');
+    }),
     catchError(error => of(new GetLoginFailureAction(error))),
   );
-/*
-  @Effect()
-  getLoginSuccess$ = this._actions.pipe(
-    ofType<GetLoginSuccessAction>(ELoginActions.GetLoginsSuccess),
-    finalize((user) => ),
-    catchError(error => of(new GetLoginFailureAction(error))),
-  );
-  */
 }
-/*
-this._StorageService.savefile(user.data.user,'user')
-*/
+

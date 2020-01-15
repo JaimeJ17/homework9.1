@@ -6,3 +6,5 @@ export const productCategory =
 export const category =
   'https://trainee-program.herokuapp.com/api/v1/categories';
 export const cart = 'https://trainee-program.herokuapp.com/api/v1/cart';
+export const productSearch =
+  'https://trainee-program.herokuapp.com/api/v1/products?filter[slug_cont]=newfilter&include=image_attachment.blob,category,master';

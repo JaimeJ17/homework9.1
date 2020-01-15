@@ -59,6 +59,20 @@ export class SearchProductsActions implements Action {
   public readonly type = EProductActions.SearchProducts;
   constructor(public payload: string) {}
 }
+
+export class SearchProductsSuccesstsActions implements Action {
+  public readonly type = EProductActions.SearchProductsSuccess;
+  constructor(public payload: Product[]) {}
+}
+
+export class SearchProductsFailureActions implements Action {
+  public readonly type = EProductActions.SearchProductsFailure;
+  public payload: Error;
+  constructor(error: any) {
+    this.payload = error;
+  }
+}
+
 export type ProductActions =
   | GetProductAction
   | GetProductsPerCategoryAction
@@ -67,4 +81,6 @@ export type ProductActions =
   | GetProductsAction
   | GetProductsSuccessAction
   | GetProductsFailureAction
-  | SearchProductsActions;
+  | SearchProductsActions
+  | SearchProductsSuccesstsActions
+  | SearchProductsFailureActions;
