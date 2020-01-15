@@ -21,7 +21,7 @@ export const productReducer = (
     case EProductActions.GetProductsPerCategorySuccess: {
       return {
         ...state,
-        filterProducts: action.payload
+        products: action.payload
       };
     }
     case EProductActions.GetProduct: {
@@ -36,7 +36,7 @@ export const productReducer = (
     case EProductActions.SearchProductsSuccess: {
       return {
         ...state,
-        filterProducts: action.payload,
+        products: action.payload,
         error: null
       };
     }
