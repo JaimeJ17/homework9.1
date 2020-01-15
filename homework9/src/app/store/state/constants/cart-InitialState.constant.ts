@@ -1,4 +1,5 @@
-import { Cart } from './../interfaces/cart.interface';
+import { Cart } from '../../../modules/shared/interfaces/cart.interface';
+
 export const cartInitialState: Cart = {
   id: null,
   user_id: null,

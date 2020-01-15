@@ -1,3 +1,4 @@
+import { User } from './../interfaces/user.interface';
 import { Injectable } from '@angular/core';
 
 
@@ -8,7 +9,7 @@ export class LocalstorageService {
 
   constructor() { }
 
-  savefile(data: string, identifier: string) {
+  savefile(data: string | User, identifier: string) {
     localStorage.setItem(identifier, JSON.stringify(data));
   }
 
@@ -17,7 +18,7 @@ export class LocalstorageService {
     return retrievedObject ? retrievedObject : [] ;
   }
 
-  removefile(identifier: string){
+  removefile(identifier: string) {
     localStorage.removeItem(identifier);
   }
 

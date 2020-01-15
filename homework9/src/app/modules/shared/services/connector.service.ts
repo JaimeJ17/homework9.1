@@ -23,7 +23,7 @@ export class ConnectorService {
   register(user: User): Observable<Response> {
     this.loading.changeState(true);
     return this.http
-      .post( login, user)
+      .post( login, {data: user})
       .pipe(
         finalize(() => {
           this.loading.changeState(false);
@@ -38,7 +38,7 @@ export class ConnectorService {
   login(user: User): Observable<Response> {
     this.loading.changeState(true);
     return this.http
-      .post(login, user)
+      .post(login, {data: user})
       .pipe(
         finalize(() => {
           this.loading.changeState(false);
