@@ -21,7 +21,7 @@ export class SidebarComponent implements OnInit {
       this.categories = data.products.categories);
   }
 
-  filterProducts(slug: string){
+  filterProducts(slug: string) {
     this.store.dispatch(new GetProductsPerCategoryAction(slug));
   }
 }

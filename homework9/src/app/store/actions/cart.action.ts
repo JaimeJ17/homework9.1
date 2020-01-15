@@ -17,4 +17,5 @@ export class RemoveFromCartAction implements Action {
 }
 
 export type CartActions =
-  | AddCartAction;
+  | AddCartAction
+  | RemoveFromCartAction;

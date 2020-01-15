@@ -34,8 +34,8 @@ export const productReducer = (
     case EProductActions.SearchProducts: {
       return {
         ...state,
-        filterProducts: state.products.filter(
-          prodcut => prodcut.name.includes(action.payload)
+        filterProducts: state.products.filter(prodcut =>
+          prodcut.name.includes(action.payload)
         ),
         error: null
       };
@@ -44,7 +44,22 @@ export const productReducer = (
       return { ...state, categories: action.payload, error: null };
     }
     case ECartActions.AddCart: {
-      return { ...state,  cart: Object.assign(state.cart, {items: [...state.cart.items, action.payload]})};
+      return {
+        ...state,
+        cart: Object.assign(state.cart, {
+          items: [...state.cart.items, action.payload]
+        })
+      };
+    }
+    case ECartActions.RemoveFromCart: {
+      return {
+        ...state,
+        cart: Object.assign(state.cart, {
+          items: state.cart.items.filter(
+            items => items.product_variant_id !== action.payload
+          )
+        })
+      };
     }
     default:
       return state;

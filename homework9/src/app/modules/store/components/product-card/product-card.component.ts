@@ -1,4 +1,4 @@
-import { AddCartAction } from './../../../../store/actions/cart.action';
+import { AddCartAction, RemoveFromCartAction } from './../../../../store/actions/cart.action';
 import { GetProductsPerCategoryAction, SearchProductsActions } from './../../../../store/actions/product.actions';
 import { GetCategoryAction } from './../../../../store/actions/category.action';
 import { Component, OnInit } from '@angular/core';
@@ -25,7 +25,9 @@ export class ProductCardComponent implements OnInit {
   call() {
     this.store.dispatch(new GetProductsAction());
     this.store.dispatch(new GetCategoryAction());
-    this.store.dispatch(new AddCartAction([{id:'a', quantity:'aa', product_variant_id:'aa'}]));
+    this.store.dispatch(new AddCartAction({ id: 'a', quantity: 'aa', product_variant_id: 'aa' }));
+    this.store.dispatch(new AddCartAction({ id: 'a', quantity: 'aa', product_variant_id: 'bb' }));
+    this.store.dispatch(new RemoveFromCartAction('aa'));
     setTimeout(() => {
       this.store.dispatch(new SearchProductsActions('se'));
     }, 5000);
