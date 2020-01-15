@@ -1,5 +1,5 @@
 import { AddCartAction, RemoveFromCartAction } from './../../../../store/actions/cart.action';
-import { GetProductsPerCategoryAction, SearchProductsActions } from './../../../../store/actions/product.actions';
+import { SearchProductsActions } from './../../../../store/actions/product.actions';
 import { GetCategoryAction } from './../../../../store/actions/category.action';
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
@@ -15,11 +15,12 @@ import { GetLoginAction, LogOutAction } from '../../../../store/actions/login.ac
   styleUrls: ['./product-card.component.scss']
 })
 export class ProductCardComponent implements OnInit {
-  obs$: Observable<IAppState>;
+  obs$: Observable<number>;
   aaa;
   constructor(private store: Store<IAppState>, private connector: ConnectorService) { }
 
   ngOnInit() {
+    this.obs$ =  this.store.select(state =>  state.products.cart.items.length);
     this.store.dispatch(new GetCategoryAction());
     this.store.subscribe((data) =>
       console.log(data));
