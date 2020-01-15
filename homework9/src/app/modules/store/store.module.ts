@@ -16,10 +16,11 @@ import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { AppRoutingModule } from 'src/app/app-routing.module';
 import { RouterModule } from '@angular/router';
 import { MatListModule } from '@angular/material/list';
+import { ProductComponent } from './components/product/product.component';
 
 
 @NgModule({
-  declarations: [LoginComponent, FormErrorComponent, NavigationComponent, ProductCardComponent, SidebarComponent],
+  declarations: [LoginComponent, FormErrorComponent, NavigationComponent, ProductCardComponent, SidebarComponent, ProductComponent],
   imports: [
     CommonModule,
     FormsModule,
