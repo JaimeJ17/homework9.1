@@ -15,10 +15,11 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { AppRoutingModule } from 'src/app/app-routing.module';
 import { RouterModule } from '@angular/router';
+import { MatListModule } from '@angular/material/list';
 
 
 @NgModule({
-  declarations: [LoginComponent, FormErrorComponent, NavigationComponent, ProductCardComponent, SidebarComponent ],
+  declarations: [LoginComponent, FormErrorComponent, NavigationComponent, ProductCardComponent, SidebarComponent],
   imports: [
     CommonModule,
     FormsModule,
@@ -30,6 +31,7 @@ import { RouterModule } from '@angular/router';
     MatCardModule,
     MatIconModule,
     MatSidenavModule,
+    MatListModule,
     RouterModule
   ],
   exports: [

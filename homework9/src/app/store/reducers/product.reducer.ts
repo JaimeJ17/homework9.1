@@ -1,3 +1,4 @@
+import { CartActions, ECartActions } from './../actions/cart.action';
 import {
   ECategoryActions,
   CategoryActions
@@ -7,7 +8,7 @@ import { ProductActions, EProductActions } from '../actions/product.actions';
 
 export const productReducer = (
   state: IProductState = initialProductSate,
-  action: ProductActions | CategoryActions
+  action: ProductActions | CategoryActions | CartActions
 ): IProductState => {
   switch (action.type) {
     case EProductActions.GetProductsSuccess: {
@@ -30,8 +31,20 @@ export const productReducer = (
         error: null
       };
     }
+    case EProductActions.SearchProducts: {
+      return {
+        ...state,
+        filterProducts: state.products.filter(
+          prodcut => prodcut.name.includes(action.payload)
+        ),
+        error: null
+      };
+    }
     case ECategoryActions.GetCategorysSuccess: {
       return { ...state, categories: action.payload, error: null };
+    }
+    case ECartActions.AddCart: {
+      return { ...state,  cart: Object.assign(state.cart, {items: [...state.cart.items, action.payload]})};
     }
     default:
       return state;

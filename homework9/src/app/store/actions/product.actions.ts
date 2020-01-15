@@ -41,9 +41,14 @@ export class GetProductsFailureAction implements Action {
   }
 }
 
+export class SearchProductsActions implements Action {
+  public readonly type = EProductActions.SearchProducts;
+  constructor(public payload: string) {}
+}
 export type ProductActions =
   | GetProductAction
   | GetProductsPerCategoryAction
   | GetProductsAction
   | GetProductsSuccessAction
-  | GetProductsFailureAction;
+  | GetProductsFailureAction
+  | SearchProductsActions;

@@ -1,3 +1,4 @@
+import { Cart } from './../../modules/shared/interfaces/cart.interface';
 import { Category } from './../../modules/shared/interfaces/category.interface';
 import { Product } from './../../modules/shared/interfaces/product.interface';
 
@@ -7,6 +8,7 @@ export interface IProductState {
   currentProduct: Product[];
   categories: Category[];
   error: any;
+  cart: Cart;
 }
 
 export const initialProductSate: IProductState = {
@@ -15,4 +17,5 @@ export const initialProductSate: IProductState = {
   error: null,
   categories: [],
   currentProduct: null,
+  cart: {id: null, user_id: null, items: []},
 };
