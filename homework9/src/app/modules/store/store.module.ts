@@ -37,4 +37,4 @@ import { RouterModule } from '@angular/router';
     SidebarComponent
   ]
 })
-export class StoreModule { }
+export class AppStoreModule { }
