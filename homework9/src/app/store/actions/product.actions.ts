@@ -5,6 +5,8 @@ import { Action } from '@ngrx/store';
 export enum EProductActions {
   GetProduct = '[product] Get Product',
   GetProductsPerCategory = '[Product] Get Products per Category',
+  GetProductsPerCategorySuccess = '[Product] Get Products per Category Success',
+  GetProductsPerCategoryFailure = '[Product] Get Products per Category Failure',
   GetProducts = '[Product] Get Products',
   GetProductsFailure = '[Product] Get Products Failure',
   GetProductsSuccess = '[Product] Get Products Success',
@@ -23,6 +25,18 @@ export class GetProductsPerCategoryAction implements Action {
   constructor(public payload: string) {}
 }
 
+export class GetProductsPerCategorySuccessAction implements Action {
+  public readonly type = EProductActions.GetProductsPerCategorySuccess;
+  constructor(public payload: Product[]) {}
+}
+
+export class GetProductsPerCategoryFailureAction implements Action {
+  public readonly type = EProductActions.GetProductsPerCategoryFailure;
+  public payload: Error;
+  constructor(error: any) {
+    this.payload = error;
+  }
+}
 
 export class GetProductsAction implements Action {
   public readonly type = EProductActions.GetProducts;
@@ -48,6 +62,8 @@ export class SearchProductsActions implements Action {
 export type ProductActions =
   | GetProductAction
   | GetProductsPerCategoryAction
+  | GetProductsPerCategorySuccessAction
+  | GetProductsPerCategoryFailureAction
   | GetProductsAction
   | GetProductsSuccessAction
   | GetProductsFailureAction

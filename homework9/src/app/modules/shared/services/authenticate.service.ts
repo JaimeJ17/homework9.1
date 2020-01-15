@@ -26,7 +26,7 @@ export class AuthenticateService {
   get loginState$() {
     return this.isUserLoginSubject.asObservable();
   }
-
+/*
   logIn(loginForm: FormGroup) {
     return this.connector.login(loginForm.value).pipe(
       tap((result: Response) => {
@@ -34,7 +34,7 @@ export class AuthenticateService {
       this.updateLoginStatus();
     }));
   }
-
+*/
   logOut() {
     this.storage.removefile('token');
     this.storage.removefile('user');

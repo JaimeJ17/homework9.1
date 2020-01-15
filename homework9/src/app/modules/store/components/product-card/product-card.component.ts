@@ -21,7 +21,7 @@ export class ProductCardComponent implements OnInit {
   ngOnInit() {
     this.store.dispatch(new GetCategoryAction());
     this.store.subscribe((data) =>
-      console.log(data.products.categories));
+      console.log(data));
   }
 
   call() {

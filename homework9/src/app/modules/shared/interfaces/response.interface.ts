@@ -1,4 +1,3 @@
-import { User } from './user.interface';
 export interface Response {
   token?: string;
   id?: string;
@@ -10,9 +9,4 @@ export interface Response {
       field_name: string;
     }
   ];
-
-  data?: {
-    token?: string;
-    user?: User
-  };
 }

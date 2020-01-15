@@ -5,21 +5,20 @@ import {
 } from './../actions/category.action';
 import { IProductState, initialProductSate } from '../state/product.state';
 import { ProductActions, EProductActions } from '../actions/product.actions';
+import { ELoginActions, LoginActions } from '../actions/login.action';
 
 export const productReducer = (
   state: IProductState = initialProductSate,
-  action: ProductActions | CategoryActions | CartActions
+  action: ProductActions | CategoryActions | CartActions | LoginActions
 ): IProductState => {
   switch (action.type) {
     case EProductActions.GetProductsSuccess: {
       return { ...state, products: action.payload, error: null };
     }
-    case EProductActions.GetProductsPerCategory: {
+    case EProductActions.GetProductsPerCategorySuccess: {
       return {
         ...state,
-        filterProducts: state.products.filter(
-          prodcut => prodcut.category.slug === action.payload
-        )
+        filterProducts: action.payload
       };
     }
     case EProductActions.GetProduct: {
@@ -60,6 +59,11 @@ export const productReducer = (
           )
         })
       };
+    }
+    case ELoginActions.GetLoginsSuccess: {
+      return {
+        ...state, login: action.payload
+      }
     }
     default:
       return state;
