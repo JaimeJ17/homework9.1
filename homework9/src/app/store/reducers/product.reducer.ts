@@ -25,6 +25,9 @@ export const productReducer = (
       };
     }
     case EProductActions.GetProduct: {
+      console.log(state.products.find(
+        prodcut => prodcut.id === action.payload
+      ));
       return {
         ...state,
         currentProduct: state.products.find(

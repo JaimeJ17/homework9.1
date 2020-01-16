@@ -17,7 +17,7 @@ export enum EProductActions {
 
 export class GetProductAction implements Action {
   public readonly type = EProductActions.GetProduct;
-  constructor(public payload: string) {}
+  constructor(public payload: number) {}
 }
 
 export class GetProductsPerCategoryAction implements Action {

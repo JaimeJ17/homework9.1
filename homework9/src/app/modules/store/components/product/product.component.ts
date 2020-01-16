@@ -13,9 +13,21 @@ import { getProduct } from '../../../../store/selectors/store.selectors';
 export class ProductComponent implements OnInit {
   product: Product;
 
-  constructor(private store: Store<IAppState>) { }
+  constructor(private store: Store<IAppState>) {}
 
   ngOnInit() {
-    this.store.select(getProduct).subscribe(data => this.product = data);
+    this.store.select(getProduct).subscribe(data => (this.product = data));
+  }
+
+  add(input: HTMLInputElement) {
+    input.valueAsNumber === this.product.master.stock
+      ? (input.valueAsNumber = input.valueAsNumber)
+      : (input.valueAsNumber = input.valueAsNumber + 1);
+  }
+
+  remove(input: HTMLInputElement) {
+    input.valueAsNumber === 0
+      ? (input.valueAsNumber = 0)
+      : (input.valueAsNumber = input.valueAsNumber - 1);
   }
 }
