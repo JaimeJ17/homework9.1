@@ -4,6 +4,16 @@
   justify-content: space-between;
 }
 
+.card-header-image {
+  background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
+  background-size: cover;
+}
+
+.login-options {
+  display: flex;
+  align-items: center;
+}
+
 .logo-container{
   display: flex;
   align-items: center;

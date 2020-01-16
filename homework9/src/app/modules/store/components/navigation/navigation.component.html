@@ -9,7 +9,7 @@
       <input #searchBar matInput (keyup.enter)="search(searchBar)" />
     </mat-form-field>
   </div>
-  <div>
+  <div class="login-options">
     <div *ngIf="isLogged$ | async" mat-card-avatar class="card-header-image"></div>
     <div *ngIf="!(isLogged$ | async)">
       <button [routerLink]="['/login']" mat-raised-button>Log In</button>
