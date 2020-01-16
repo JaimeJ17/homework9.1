@@ -40,7 +40,7 @@ export class ConnectorService {
     this.loading.changeState(true);
     return this.http
       .post(login, {data: user})
-      .pipe(
+     /*.pipe(
         finalize(() => {
           this.loading.changeState(false);
         }),
@@ -48,7 +48,7 @@ export class ConnectorService {
           this.loading.changeState(false);
           return throwError(false);
         })
-      );
+      );*/
   }
 
   product(): Observable<Data> {

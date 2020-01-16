@@ -1,11 +1,11 @@
 import { IProductState, initialProductSate } from './product.state';
 
 export interface IAppState {
-  products: IProductState;
+  myStore: IProductState;
 }
 
 export const initialAppState: IAppState = {
-  products: initialProductSate,
+  myStore: initialProductSate,
 };
 
 

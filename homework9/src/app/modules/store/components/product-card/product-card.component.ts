@@ -1,8 +1,11 @@
-import { getProducts } from './../../../../store/selectors/store.selectors';
+import { getProducts, getLoginToken } from './../../../../store/selectors/store.selectors';
 import { Product } from './../../../shared/interfaces/product.interface';
 import { Component, OnInit } from '@angular/core';
 import { IAppState } from 'src/app/store/state/app.state';
 import { Store } from '@ngrx/store';
+import { Router } from '@angular/router';
+import { GetProductAction } from '../../../../store/actions/product.actions';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-product-card',
@@ -11,8 +14,9 @@ import { Store } from '@ngrx/store';
 })
 export class ProductCardComponent implements OnInit {
   products: Product[];
+  canLike$: Observable<boolean> = this.store.select(getLoginToken);
 
-  constructor(private store: Store<IAppState>) { }
+  constructor(private store: Store<IAppState>,  private router: Router) { }
 
   ngOnInit() {
     this.store.select(getProducts)
@@ -23,5 +27,11 @@ export class ProductCardComponent implements OnInit {
   }
 
   back(){
+  }
+
+  openProduct(id: number){
+    this.store.dispatch(new GetProductAction(id));
+    this.router.navigate(['product']);
+
   }
 }

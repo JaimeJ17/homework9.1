@@ -1,9 +1,10 @@
-<div>
+<div class="profile-container">
   <div mat-card-avatar class="card-header-image"></div>
   <div>
     <span>Email: {{ user$ | async }}</span>
     <button (click)="logOut()" mat-raised-button>
       Log Out
     </button>
+    <button mat-raised-button (click)="close()">close </button>
   </div>
 </div>

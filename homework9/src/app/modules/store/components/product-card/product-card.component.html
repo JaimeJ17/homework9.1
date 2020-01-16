@@ -3,21 +3,19 @@
     <mat-card-header>
       <mat-card-title>{{ product.name }}</mat-card-title>
     </mat-card-header>
-    <img mat-card-image [src]="product.image?.url" alt="Photo of a Shiba Inu" />
+    <img (click)="openProduct(product.id)" mat-card-image [src]="product.image?.url" alt="Photo of a Shiba Inu" />
     <mat-card-content>
       Price: {{ product.master.price | currency  }}
     </mat-card-content>
     <mat-card-actions class="card-bottom">
-      <button mat-button>
+      <button mat-button >
         <mat-icon (click)="call()">add_shopping_cart </mat-icon>
       </button>
-      <button mat-button>
+      <button mat-button [disabled]="!(canLike$ | async)">
         <mat-icon (click)="back()">thumb_up</mat-icon>
-        <span> {{ product.likes_up_count }} </span>
       </button>
-      <button mat-button>
+      <button mat-button [disabled]="!(canLike$ | async)">
         <mat-icon>thumb_down</mat-icon>
-        <span> {{ product.likes_down_count }} </span>
       </button>
     </mat-card-actions>
   </mat-card>

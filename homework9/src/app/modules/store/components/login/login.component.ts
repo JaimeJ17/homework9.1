@@ -25,8 +25,10 @@ export class LoginComponent implements OnInit {
   loginCheck(button: HTMLButtonElement) {
     button.disabled = true;
     this.store.dispatch(new GetLoginAction(this.buildUser()));
-    this.route.navigate(['home']);
-    button.disabled = false;
+    setTimeout(() => {
+      this.route.navigate(['/login']);
+      button.disabled = false;
+    }, 1000);
   }
 
   getControl(input: string) {

@@ -2,7 +2,7 @@ import { IAppState } from '../state/app.state';
 import { createSelector } from '@ngrx/store';
 import { IProductState } from '../state/product.state';
 
-export const getProductSate = (state: IAppState) => state.products;
+export const getProductSate = (state: IAppState) => state.myStore;
 
 export const getProducts = createSelector(
   getProductSate,
@@ -37,4 +37,9 @@ export const getUser = createSelector(
 export const getCartItems = createSelector(
   getProductSate,
   (state: IProductState) => state.cart.items,
+);
+
+export const getEmail = createSelector(
+  getProductSate,
+  (state: IProductState) => state.login.user.email,
 );

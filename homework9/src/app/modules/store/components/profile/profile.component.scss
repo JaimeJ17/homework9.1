@@ -1,0 +1,19 @@
+:host{
+  position: relative;
+}
+
+.card-header-image {
+  background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
+  background-size: cover;
+  margin-right: 10px;
+}
+
+.profile-container{
+  top: 0px;
+    left: -200px;
+    z-index: 2;
+    display: flex;
+    position: absolute;
+    background-color: #424242;
+    padding: 10px;
+}

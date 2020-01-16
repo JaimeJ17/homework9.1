@@ -5,20 +5,26 @@ import { ConnectorService } from '../../modules/shared/services/connector.servic
 import { switchMap, catchError } from 'rxjs/operators';
 import { from, of } from 'rxjs';
 import { GetCategoryAction, GetCategorysSuccessAction, GetCategorysFailureAction, ECategoryActions } from '../actions/category.action';
+import { IAppState } from '../state/app.state';
+import { Store } from '@ngrx/store';
 
 
 @Injectable()
 export class CategoriesEffects {
   constructor(
-    private _actions: Actions,
-    private _categoryService: ConnectorService,
+    private actions: Actions,
+    private categoryService: ConnectorService,
+    private store: Store<IAppState>
   ) { }
 
   @Effect()
-  getCategories$ = this._actions.pipe(
+  getCategories$ = this.actions.pipe(
     ofType<GetCategoryAction>(ECategoryActions.GetCategory),
-    switchMap(() => this._categoryService.category()),
+    switchMap(() => this.categoryService.category()),
     switchMap(categories => of(new GetCategorysSuccessAction(categories.data))),
-    catchError(error => of(new GetCategorysFailureAction(error))),
+    catchError((error, caugth) => {
+      this.store.dispatch(new GetCategorysFailureAction(error));
+      return caugth;
+    }),
   );
 }

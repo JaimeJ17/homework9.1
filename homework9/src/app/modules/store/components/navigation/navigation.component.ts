@@ -17,6 +17,7 @@ import { EventEmitter } from 'protractor';
 })
 export class NavigationComponent implements OnInit {
   isLogged$: Observable<boolean> = this.store.select(getLoginToken);
+  displayUser = false;
 
 
   constructor(private store: Store<IAppState>, private router: Router) { }
@@ -35,4 +36,7 @@ export class NavigationComponent implements OnInit {
     this.store.dispatch(new ToggleCategoryAction());
   }
 
+  changeProfile(){
+    this.displayUser = !this.displayUser;
+  }
 }

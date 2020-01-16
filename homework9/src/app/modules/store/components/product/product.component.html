@@ -1,19 +1,22 @@
-<mat-card *ngIf="product">
-  <mat-card-header>
-    <mat-card-title> {{ product.name }} {{ canLike$ | async }} </mat-card-title>
-  </mat-card-header>
+<mat-card class="product-container" *ngIf="product">
+  <div>
+     <button mat-button [routerLink]="['/home']">
+       <mat-icon>arrow_back</mat-icon>
+      </button>
+      <mat-card-title> {{ product.name }}</mat-card-title>
+  </div>
   <div class="product-image">
     <img [src]="product.image.url" alt="" srcset="" />
   </div>
   <mat-card-actions>
-    <button (click)="add(items)" mat-button>
+    <button mat-button (click)="add(items)">
         <mat-icon>add</mat-icon>
     </button>
     <mat-form-field>
       <input #items matInput type='number' value="0" min="0" placeholder="Quantity"/>
     </mat-form-field>
-    <button mat-button>
-      <mat-icon (click)="remove(items)">remove</mat-icon>
+    <button mat-button (click)="remove(items)">
+      <mat-icon>remove</mat-icon>
     </button>
   </mat-card-actions>
   <mat-card-actions>

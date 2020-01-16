@@ -15,45 +15,57 @@ import {
 } from '../actions/product.actions';
 import { switchMap, catchError } from 'rxjs/operators';
 import { from, of } from 'rxjs';
+import { IAppState } from '../state/app.state';
 import {
   SearchProductsSuccesstsActions,
   SearchProductsFailureActions
 } from '../actions/product.actions';
+import { Store } from '@ngrx/store';
 
 @Injectable()
 export class ProductEffects {
   constructor(
-    private _actions: Actions,
-    private _productService: ConnectorService
+    private actions: Actions,
+    private productService: ConnectorService,
+    private store: Store<IAppState>
   ) {}
 
   @Effect()
-  getProducts$ = this._actions.pipe(
+  getProducts$ = this.actions.pipe(
     ofType<GetProductsAction>(EProductActions.GetProducts),
-    switchMap(() => this._productService.product()),
+    switchMap(() => this.productService.product()),
     switchMap(products => of(new GetProductsSuccessAction(products.data))),
-    catchError(error => of(new GetProductsFailureAction(error)))
+    catchError((error, caugth) => {
+      this.store.dispatch(new GetProductsFailureAction(error));
+      return caugth;
+    })
   );
 
   @Effect()
-  getProductsCategory$ = this._actions.pipe(
+  getProductsCategory$ = this.actions.pipe(
     ofType<GetProductsPerCategoryAction>(
       EProductActions.GetProductsPerCategory
     ),
-    switchMap(search => this._productService.productCategory(search.payload)),
+    switchMap(search => this.productService.productCategory(search.payload)),
     switchMap(products =>
       of(new GetProductsPerCategorySuccessAction(products.data))
     ),
-    catchError(error => of(new GetProductsPerCategoryFailureAction(error)))
+    catchError((error, caugth) => {
+      this.store.dispatch(new GetProductsPerCategoryFailureAction(error));
+      return caugth;
+    })
   );
 
   @Effect()
-  searchProducts$ = this._actions.pipe(
+  searchProducts$ = this.actions.pipe(
     ofType<SearchProductsActions>(EProductActions.SearchProducts),
-    switchMap(search => this._productService.productSearch(search.payload)),
+    switchMap(search => this.productService.productSearch(search.payload)),
     switchMap(products =>
       of(new SearchProductsSuccesstsActions(products.data))
     ),
-    catchError(error => of(new SearchProductsFailureActions(error)))
+    catchError((error, caugth) => {
+      this.store.dispatch(new SearchProductsFailureActions(error));
+      return caugth;
+    })
   );
 }

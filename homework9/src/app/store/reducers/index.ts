@@ -4,6 +4,6 @@ import { productReducer } from './product.reducer';
 import { IAppState } from '../state/app.state';
 
 export const reducers: ActionReducerMap<IAppState, any> = {
-  products: productReducer,
+  myStore: productReducer,
 };
 

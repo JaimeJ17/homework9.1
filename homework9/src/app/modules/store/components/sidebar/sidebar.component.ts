@@ -23,7 +23,7 @@ export class SidebarComponent implements OnInit {
 
   ngOnInit() {
     this.categories$ = this.store.select(getCategories);
-    this.store.select(state => state.products.toggle).subscribe(data => this.change = data);
+    this.store.select(state => state.myStore.toggle).subscribe(data => this.change = data);
   }
 
   filterProducts(slug: string) {

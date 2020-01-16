@@ -4,28 +4,39 @@ import { ConnectorService } from '../../modules/shared/services/connector.servic
 
 import { switchMap, catchError, finalize, tap } from 'rxjs/operators';
 import { from, of } from 'rxjs';
-import { GetLoginAction, ELoginActions, GetLoginSuccessAction, GetLoginFailureAction, SaveLoginAction } from '../actions/login.action';
-import { LocalstorageService } from '../../modules/shared/services/localstorage.service';
+import {
+  GetLoginAction,
+  ELoginActions,
+  GetLoginSuccessAction,
 
+} from '../actions/login.action';
+import { LocalstorageService } from '../../modules/shared/services/localstorage.service';
+import { IAppState } from '../state/app.state';
+import { Store } from '@ngrx/store';
+import { GetLoginFailureAction } from '../actions/login.action';
 
 @Injectable()
 export class LoginEffects {
   constructor(
-    private _actions: Actions,
-    private _LoginService: ConnectorService,
-    private _StorageService: LocalstorageService
-  ) { }
+    private actions: Actions,
+    private loginService: ConnectorService,
+    private StorageService: LocalstorageService,
+    private store: Store<IAppState>
+
+    ) {}
 
   @Effect()
-  getLogin$ = this._actions.pipe(
+  getLogin$ = this.actions.pipe(
     ofType<GetLoginAction>(ELoginActions.GetLogin),
-    switchMap((user) => this._LoginService.login(user.payload)),
-    switchMap(user => of(new GetLoginSuccessAction(user.data))),
-    tap((user) => {
-      this._StorageService.savefile(user.payload.user, 'user');
-      this._StorageService.savefile(user.payload.token, 'token');
+    switchMap(user => this.loginService.login(user.payload)),
+    switchMap(user => {
+      this.StorageService.savefile(user.data.user, 'user');
+      this.StorageService.savefile(user.data.token, 'token');
+      return of(new GetLoginSuccessAction(user.data));
     }),
-    catchError(error => of(new GetLoginFailureAction(error))),
+    catchError((error, caugth) => {
+      this.store.dispatch(new GetLoginFailureAction(error));
+      return caugth;
+    }),
   );
 }
-
