@@ -1,1 +1,9 @@
-<p>profile works!</p>
+<div>
+  <div mat-card-avatar class="card-header-image"></div>
+  <div>
+    <span>Email: {{ user$ | async }}</span>
+    <button (click)="logOut()" mat-raised-button>
+      Log Out
+    </button>
+  </div>
+</div>
