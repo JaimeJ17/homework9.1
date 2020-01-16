@@ -1,3 +1,4 @@
+import { getLoginToken } from './../../../../store/selectors/store.selectors';
 import { Product } from './../../../shared/interfaces/product.interface';
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
@@ -12,6 +13,7 @@ import { getProduct } from '../../../../store/selectors/store.selectors';
 })
 export class ProductComponent implements OnInit {
   product: Product;
+  canLike$: Observable<boolean> = this.store.select(getLoginToken);
 
   constructor(private store: Store<IAppState>) {}
 

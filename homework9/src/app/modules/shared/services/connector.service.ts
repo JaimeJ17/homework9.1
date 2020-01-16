@@ -1,9 +1,7 @@
+import { Like } from './../interfaces/like.interface';
 import { LoginResponse } from './../interfaces/login-response.interface';
 import { Data } from './../interfaces/data.interface';
-import { Category } from './../interfaces/category.interface';
-import { Product } from './../interfaces/product.interface';
-import { product, category, productCategory, productSearch } from './../constants/url.constant';
-import { Error } from './../interfaces/error.interface';
+import { product, category, productCategory, productSearch, like } from './../constants/url.constant';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { throwError, Observable } from 'rxjs';
@@ -12,7 +10,7 @@ import { login } from '../constants/url.constant';
 import { User } from '../interfaces/user.interface';
 import { Response } from '../interfaces/response.interface';
 import { LoadingService } from './loading.service';
-import { ErrorhandlerService } from './errorhandler.service';
+
 
 
 @Injectable({
@@ -105,6 +103,21 @@ export class ConnectorService {
     this.loading.changeState(true);
     return this.http
       .get(category)
+      .pipe(
+        finalize(() => {
+          this.loading.changeState(false);
+        }),
+        catchError(() => {
+          this.loading.changeState(false);
+          return throwError(null);
+        })
+      );
+  }
+
+  like(likedProduct: Like): Observable<Data> {
+    this.loading.changeState(true);
+    return this.http
+      .post(like, {data: likedProduct})
       .pipe(
         finalize(() => {
           this.loading.changeState(false);

@@ -1,4 +1,8 @@
+import { GetProductsAction, SearchProductsActions } from './../../../../store/actions/product.actions';
+import { IAppState } from 'src/app/store/state/app.state';
 import { Component, OnInit } from '@angular/core';
+import { Store } from '@ngrx/store';
+import { GetCategoryAction } from 'src/app/store/actions/category.action';
 
 
 @Component({
@@ -8,9 +12,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NavigationComponent implements OnInit {
 
-  constructor() { }
+  constructor(private store: Store<IAppState>) { }
 
   ngOnInit() {
+    this.store.dispatch(new GetCategoryAction());
+    this.store.dispatch(new GetProductsAction());
+  }
+
+  search(searchBar: HTMLButtonElement){
+    this.store.dispatch(new SearchProductsActions(searchBar.value));
   }
 
 }

@@ -1,6 +1,6 @@
 <mat-card *ngIf="product">
   <mat-card-header>
-    <mat-card-title> {{ product.name }} </mat-card-title>
+    <mat-card-title> {{ product.name }} {{ canLike$ | async }} </mat-card-title>
   </mat-card-header>
   <div class="product-image">
     <img [src]="product.image.url" alt="" srcset="" />
@@ -10,8 +10,7 @@
         <mat-icon>add</mat-icon>
     </button>
     <mat-form-field>
-      <input #items matInput type='number' value="0" min="0" placeholder="Quantity" formControlName="password"/>
-      <app-form-error ></app-form-error>
+      <input #items matInput type='number' value="0" min="0" placeholder="Quantity"/>
     </mat-form-field>
     <button mat-button>
       <mat-icon (click)="remove(items)">remove</mat-icon>
@@ -21,11 +20,11 @@
     <button mat-button>
       <mat-icon>add_shopping_cart </mat-icon>
     </button>
-    <button mat-button>
+    <button mat-button color="primary" [disabled]="!(canLike$ | async)">
       <mat-icon>thumb_up</mat-icon>
-      <span> {{ product.likes_up_count }}</span>
+      <span> {{ product.likes_up_count }} </span>
     </button>
-    <button mat-button>
+    <button mat-button color="primary" [disabled]="!(canLike$ | async)">
       <mat-icon>thumb_down</mat-icon>
       <span> {{ product.likes_down_count }}</span>
     </button>

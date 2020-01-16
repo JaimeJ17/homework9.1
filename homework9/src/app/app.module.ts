@@ -1,3 +1,4 @@
+import { InterceptorService } from './modules/shared/services/interceptor.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -10,7 +11,7 @@ import { StoreModule } from '@ngrx/store';
 import { reducers } from './store/reducers';
 import { EffectsModule } from '@ngrx/effects';
 import { appEffects } from './store/effects/app.effects';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from '../environments/environment';
 
@@ -31,7 +32,11 @@ import { environment } from '../environments/environment';
     MatSidenavModule,
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production })
   ],
-  providers: [],
+  providers: [{
+    provide: HTTP_INTERCEPTORS,
+    useClass: InterceptorService,
+    multi: true
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,4 +1,3 @@
-
 <mat-toolbar class="toolbar" color="primary">
   <div class="logo-container">
     <button mat-button class="menu">
@@ -6,4 +5,11 @@
     </button>
     <img class="logo" src="../../../../../assets/aplaud.png" alt="" />
   </div>
+  <div class="search-bar">
+    <mat-icon (click)="search(searchBar)">search</mat-icon>
+    <mat-form-field>
+      <input #searchBar matInput (keyup.enter)="search(searchBar)" />
+    </mat-form-field>
+  </div>
+  <div></div>
 </mat-toolbar>
