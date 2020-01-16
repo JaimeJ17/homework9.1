@@ -22,12 +22,10 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
   }
 
-  loginCheck(button: HTMLButtonElement) {
-    button.disabled = true;
+  loginCheck() {
     this.store.dispatch(new GetLoginAction(this.buildUser()));
     setTimeout(() => {
       this.route.navigate(['/login']);
-      button.disabled = false;
     }, 1000);
   }
 

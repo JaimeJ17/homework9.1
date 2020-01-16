@@ -12,10 +12,10 @@ import { tokenState } from '../state/constants/token-initialState.constant';
 
 const storage: LocalstorageService = new LocalstorageService();
 
-export const productReducer = (
+export function productReducer(
   state: IProductState = initialProductSate,
   action: ProductActions | CategoryActions | CartActions | LoginActions
-): IProductState => {
+): IProductState {
   switch (action.type) {
     case EProductActions.GetProductsSuccess: {
       return { ...state, products: action.payload, error: null };
@@ -27,9 +27,9 @@ export const productReducer = (
       };
     }
     case EProductActions.GetProduct: {
-      console.log(state.products.find(
-        prodcut => prodcut.id === action.payload
-      ));
+      console.log(
+        state.products.find(prodcut => prodcut.id === action.payload)
+      );
       return {
         ...state,
         currentProduct: state.products.find(
@@ -69,27 +69,30 @@ export const productReducer = (
     case ELoginActions.GetLoginsSuccess: {
       console.log(action.payload);
       return {
-        ...state, login: action.payload
+        ...state,
+        login: action.payload
       };
     }
     case ELoginActions.GetLoginsFailure: {
       storage.removefile('user');
       storage.removefile('token');
       return {
-        ...state, login: { user: userState, token: tokenState}
+        ...state,
+        login: { user: userState, token: tokenState }
       };
     }
     case ELoginActions.LogOut: {
       storage.removefile('user');
       storage.removefile('token');
       return {
-        ...state, login: { user: userState, token: tokenState}
+        ...state,
+        login: { user: userState, token: tokenState }
       };
     }
     case ECategoryActions.ToggleCategory: {
-      return { ...state, toggle: !state.toggle};
+      return { ...state, toggle: !state.toggle };
     }
     default:
-      return {...state};
+      return { ...state };
   }
-};
+}
