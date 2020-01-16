@@ -3,6 +3,8 @@ import { IAppState } from 'src/app/store/state/app.state';
 import { Store } from '@ngrx/store';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { Route } from '@angular/compiler/src/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -15,7 +17,7 @@ export class LoginComponent implements OnInit {
     password: new FormControl('', [Validators.required])
   });
 
-  constructor(private store: Store<IAppState>) { }
+  constructor(private store: Store<IAppState>, private route: Router) { }
 
   ngOnInit() {
   }
@@ -23,6 +25,7 @@ export class LoginComponent implements OnInit {
   loginCheck(button: HTMLButtonElement) {
     button.disabled = true;
     this.store.dispatch(new GetLoginAction(this.buildUser()));
+    this.route.navigate(['home']);
     button.disabled = false;
   }
 

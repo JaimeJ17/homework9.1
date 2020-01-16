@@ -84,6 +84,9 @@ export const productReducer = (
         ...state, login: { user: null, token: null}
       };
     }
+    case ECategoryActions.ToggleCategory: {
+      return { ...state, toggle: !state.toggle};
+    }
     default:
       return state;
   }

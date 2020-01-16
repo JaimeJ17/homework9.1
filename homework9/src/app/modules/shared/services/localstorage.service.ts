@@ -15,7 +15,7 @@ export class LocalstorageService {
 
   loadfile(identifier: string) {
     const retrievedObject = JSON.parse(localStorage.getItem(identifier));
-    return retrievedObject ? retrievedObject : [] ;
+    return retrievedObject ? retrievedObject : null ;
   }
 
   removefile(identifier: string) {

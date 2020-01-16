@@ -6,6 +6,10 @@ import { SidebarComponent } from './modules/store/components/sidebar/sidebar.com
 
 const routes: Routes = [
   {
+    path: '',
+    loadChildren: () => import('./modules/store/store.module').then(mod => mod.AppStoreModule)
+  },
+  {
     path: '**',
     component: SidebarComponent
   }

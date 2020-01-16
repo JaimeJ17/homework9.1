@@ -1,16 +1,17 @@
-<mat-drawer-container class="example-container" autosize>
+<button class="toggle" type="button" mat-button (click)="drawer.toggle()">
+  <mat-icon>menu</mat-icon>
+</button>
 
-<mat-drawer #drawer class="example-sidenav" mode="side">
+<mat-drawer-container class="product-container" autosize>
+
+<mat-drawer (toggleEvent)="drawer.toggle()" #drawer id='sidenav' class="product-sidenav" mode="side">
   <mat-list>
     <mat-list-item (click)='filterProducts(category.slug)' *ngFor="let category of categories$ | async"> {{ category.name }} </mat-list-item>
    </mat-list>
 </mat-drawer>
 
-  <div class="example-sidenav-content">
-    <button type="button" mat-button (click)="drawer.toggle()">
-      Toggle sidenav
-    </button>
+  <div class="product-sidenav-content">
+
     <app-product-card></app-product-card>
-    <app-product></app-product>
   </div>
 </mat-drawer-container>

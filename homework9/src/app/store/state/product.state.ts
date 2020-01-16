@@ -15,6 +15,7 @@ export interface IProductState {
   error: any;
   cart: Cart;
   login: Login;
+  toggle: boolean;
 }
 
 export const initialProductSate: IProductState = {
@@ -23,5 +24,6 @@ export const initialProductSate: IProductState = {
   categories: [],
   currentProduct: null,
   cart: cartInitialState,
-  login: loginState
+  login: loginState,
+  toggle: false
 };

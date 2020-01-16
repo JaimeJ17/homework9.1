@@ -5,6 +5,7 @@ export enum ECategoryActions {
   GetCategory = '[Category] Get Category',
   GetCategorysFailure = '[Category] Get CategorysFailure',
   GetCategorysSuccess = '[Category] Get Categorys Success',
+  ToggleCategory = '[Category] Toggle Category',
 }
 
 export class GetCategoryAction implements Action {
@@ -24,7 +25,13 @@ export class GetCategorysFailureAction implements Action {
   }
 }
 
+
+export class ToggleCategoryAction implements Action {
+  public readonly type = ECategoryActions.ToggleCategory;
+}
+
 export type CategoryActions =
   | GetCategoryAction
   | GetCategorysSuccessAction
+  | ToggleCategoryAction
   | GetCategorysFailureAction;

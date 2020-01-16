@@ -1,3 +1,4 @@
+import { StoreRoutingModule } from './app-store-routing.module';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { LoginComponent } from './components/login/login.component';
@@ -34,7 +35,8 @@ import { ProfileComponent } from './components/profile/profile.component';
     MatIconModule,
     MatSidenavModule,
     MatListModule,
-    RouterModule
+    RouterModule,
+    StoreRoutingModule
   ],
   exports: [
     NavigationComponent,

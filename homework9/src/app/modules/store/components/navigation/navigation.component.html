@@ -1,8 +1,6 @@
-<mat-toolbar class="toolbar" color="primary">
+<div class="toolbar" color="primary">
   <div class="logo-container">
-    <button mat-button class="menu">
-      <mat-icon>menu</mat-icon>
-    </button>
+    <div class="toggle-space"></div>
     <img class="logo" src="../../../../../assets/aplaud.png" alt="" />
   </div>
   <div class="search-bar">
@@ -11,5 +9,10 @@
       <input #searchBar matInput (keyup.enter)="search(searchBar)" />
     </mat-form-field>
   </div>
-  <div></div>
-</mat-toolbar>
+  <div>
+    <div *ngIf="isLogged$ | async" mat-card-avatar class="card-header-image"></div>
+    <div *ngIf="!(isLogged$ | async)">
+      <button [routerLink]="['/login']" mat-raised-button>Log In</button>
+    </div>
+  </div>
+</div>

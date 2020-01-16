@@ -1,5 +1,11 @@
-.card-card {
+@import "media_for_all_sizes.scss";
+
+.card-prodcut {
   max-width: 200px;
+
+  img{
+    height: 200px;
+  }
 }
 
 .card-header-image {
@@ -9,4 +15,18 @@
 
 .card-bottom{
   display: flex;
+}
+
+.card-list{
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 20px;
+
+  @include for-phone-only(){
+    grid-template-columns: 1fr;
+  }
+
+  @include for-tablet-portrait-up(){
+    grid-template-columns: 1fr 1fr;
+  }
 }
