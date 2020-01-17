@@ -18,7 +18,6 @@ export class InterceptorService implements HttpInterceptor {
         Authorization: 'Bearer ' + this.storage.loadfile('token')
       }
     });
-    console.log(tokenRequest);
     return next.handle(tokenRequest);
   }
 }
