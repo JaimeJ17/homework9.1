@@ -27,9 +27,6 @@ export function productReducer(
       };
     }
     case EProductActions.GetProduct: {
-      console.log(
-        state.products.find(prodcut => prodcut.id === action.payload)
-      );
       return {
         ...state,
         currentProduct: state.products.find(
@@ -51,15 +48,17 @@ export function productReducer(
     case ECartActions.AddCart: {
       return {
         ...state,
-        cart: Object.assign(state.cart, {
+        cart: Object.assign(state.cart, {total: state.cart.total +  Number(action.payload.price),
           items: [...state.cart.items, action.payload]
         })
       };
     }
     case ECartActions.RemoveFromCart: {
+      const newValue = state.cart.items.find(item => item.id === action.payload);
       return {
         ...state,
         cart: Object.assign(state.cart, {
+          total: state.cart.total - Number(newValue.price),
           items: state.cart.items.filter(
             items => items.id !== action.payload
           )
