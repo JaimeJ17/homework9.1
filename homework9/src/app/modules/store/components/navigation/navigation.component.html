@@ -10,7 +10,7 @@
     </mat-form-field>
   </div>
   <div class="login-options">
-    <mat-icon>shopping_cart</mat-icon>
+    <mat-icon [routerLink]="['/cart']">shopping_cart</mat-icon>
     <span class="cart-length">{{ cartLength$ | async }}</span>
     <app-profile *ngIf="displayUser" (closeProfile)="changeProfile()" ></app-profile>
     <div *ngIf="isLogged$ | async" (click)="changeProfile()" mat-card-avatar class="card-header-image">
