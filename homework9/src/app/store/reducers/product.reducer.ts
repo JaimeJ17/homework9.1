@@ -66,7 +66,6 @@ export function productReducer(
       };
     }
     case ELoginActions.GetLoginsSuccess: {
-      console.log(action.payload);
       return {
         ...state,
         login: action.payload
