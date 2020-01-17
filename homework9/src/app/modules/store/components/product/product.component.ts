@@ -7,6 +7,7 @@ import { Store } from '@ngrx/store';
 import { IAppState } from '../../../../store/state/app.state';
 import { getProduct } from '../../../../store/selectors/store.selectors';
 import { LikeProductAction } from '../../../../store/actions/product.actions';
+import { MatInput } from '@angular/material/input';
 
 @Component({
   selector: 'app-product',
@@ -25,16 +26,16 @@ export class ProductComponent implements OnInit {
     this.likeProduct(25, 1);
   }
 
-  add(input: HTMLInputElement) {
-    input.valueAsNumber === this.product.master.stock
-      ? (input.valueAsNumber = input.valueAsNumber)
-      : (input.valueAsNumber = input.valueAsNumber + 1);
+  add(input: MatInput) {
+    Number(input.value) === this.product.master.stock
+      ? (input.value = input.value)
+      : (input.value = (Number(input.value) + 1).toString());
   }
 
-  remove(input: HTMLInputElement) {
-    input.valueAsNumber === 0
-      ? (input.valueAsNumber = 0)
-      : (input.valueAsNumber = input.valueAsNumber - 1);
+  remove(input: MatInput) {
+    Number(input.value) === this.product.master.stock
+      ? (input.value = '0')
+      : (input.value = (Number(input.value) - 1).toString());
   }
 
   likeProduct(id: number, like: number) {

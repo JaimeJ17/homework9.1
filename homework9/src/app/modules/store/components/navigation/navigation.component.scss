@@ -9,6 +9,21 @@
   background-size: cover;
 }
 
+.cart-length{
+  position: relative;
+    z-index: 4;
+    left: -9px;
+    top: -13px;
+    font-size: 10px;
+    border-radius: 30px;
+    background-color: red;
+    width: 15px;
+    height: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 .login-options {
   display: flex;
   align-items: center;
@@ -38,4 +53,7 @@
 .search-bar{
   display: flex;
   align-items: center;
+  mat-form-field{
+    width: 20vw;
+  }
 }

@@ -1,5 +1,5 @@
 import { ToggleCategoryAction } from './../../../../store/actions/category.action';
-import { getLoginToken } from './../../../../store/selectors/store.selectors';
+import { getLoginToken, getCartLenght } from './../../../../store/selectors/store.selectors';
 import { Observable } from 'rxjs';
 import { GetProductsAction, SearchProductsActions } from './../../../../store/actions/product.actions';
 import { IAppState } from 'src/app/store/state/app.state';
@@ -17,6 +17,7 @@ import { EventEmitter } from 'protractor';
 })
 export class NavigationComponent implements OnInit {
   isLogged$: Observable<boolean> = this.store.select(getLoginToken);
+  cartLength$: Observable<number> = this.store.select(getCartLenght);
   displayUser = false;
 
 
@@ -25,18 +26,17 @@ export class NavigationComponent implements OnInit {
   ngOnInit() {
     this.store.dispatch(new GetCategoryAction());
     this.store.dispatch(new GetProductsAction());
-    this.store.subscribe(data => console.log(data));
   }
 
   search(searchBar: HTMLButtonElement){
     this.store.dispatch(new SearchProductsActions(searchBar.value));
   }
 
-  toggle(){
+  toggle() {
     this.store.dispatch(new ToggleCategoryAction());
   }
 
-  changeProfile(){
+  changeProfile() {
     this.displayUser = !this.displayUser;
   }
 }
