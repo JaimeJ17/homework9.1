@@ -39,6 +39,11 @@ export const getCartItems = createSelector(
   (state: IProductState) => state.cart.items,
 );
 
+export const getCartTotal = createSelector(
+  getProductSate,
+  (state: IProductState) => state.cart.total,
+);
+
 export const getEmail = createSelector(
   getProductSate,
   (state: IProductState) => state.login.user.email,
