@@ -1,4 +1,5 @@
 import { Action } from '@ngrx/store';
+import { CartItems } from '../../modules/shared/interfaces/cart-items.interface';
 
 export enum ECartActions {
   AddCart = '[Cart] Add Cart',
@@ -7,7 +8,7 @@ export enum ECartActions {
 
 export class AddCartAction implements Action {
   public readonly type = ECartActions.AddCart;
-  constructor(public payload: any) {}
+  constructor(public payload: CartItems) {}
 }
 
 
