@@ -61,7 +61,7 @@ export function productReducer(
         ...state,
         cart: Object.assign(state.cart, {
           items: state.cart.items.filter(
-            items => items.product_variant_id !== action.payload
+            items => items.id !== action.payload
           )
         })
       };
