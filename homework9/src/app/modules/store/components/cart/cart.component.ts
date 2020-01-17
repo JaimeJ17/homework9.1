@@ -4,6 +4,8 @@ import { IAppState } from 'src/app/store/state/app.state';
 import { CartItems } from '../../../shared/interfaces/cart-items.interface';
 import { getCartItems } from 'src/app/store/selectors/store.selectors';
 import { RemoveFromCartAction } from '../../../../store/actions/cart.action';
+import { Observable } from 'rxjs';
+import { getCartTotal } from '../../../../store/selectors/store.selectors';
 
 @Component({
   selector: 'app-cart',
@@ -12,6 +14,7 @@ import { RemoveFromCartAction } from '../../../../store/actions/cart.action';
 })
 export class CartComponent implements OnInit, OnDestroy {
   cartList: CartItems[];
+  total$: Observable<number> = this.store.select(getCartTotal);
 
   constructor(private store: Store<IAppState>) { }
 
