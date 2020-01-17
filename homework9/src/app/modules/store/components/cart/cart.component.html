@@ -4,7 +4,7 @@
   </button>
   <mat-card *ngFor="let item of cartList">
     <mat-card-content
-      >{{ item.product_variant_id }} {{ item.quantity }}
+      >{{ item.product_variant_id }} {{ item.quantity }} <mat-icon (click)="deleteItem(item.id)">trash</mat-icon>
     </mat-card-content>
   </mat-card>
 </div>
