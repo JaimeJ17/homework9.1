@@ -36,7 +36,7 @@ export class ConnectorService {
   }
 
   login(user: User): Observable<LoginResponse> {
-    console.log(user);
+
     this.loading.changeState(true);
     return this.http
       .post(login, {data: user})
@@ -84,7 +84,6 @@ export class ConnectorService {
 
   productSearch(filter: string): Observable<Data> {
     const url = productSearch.replace('newfilter', filter);
-    console.log(url);
     this.loading.changeState(true);
     return this.http
       .get(url)
@@ -115,8 +114,6 @@ export class ConnectorService {
   }
 
   like(likedProduct: Like): Observable<Data> {
-    console.log(likedProduct);
-
     this.loading.changeState(true);
     const data = {
       data: { kind: likedProduct.kind, product_id: likedProduct.product_id },
