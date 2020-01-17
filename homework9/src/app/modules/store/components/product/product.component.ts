@@ -22,7 +22,6 @@ export class ProductComponent implements OnInit {
 
   ngOnInit() {
     this.store.select(getProduct).subscribe(data => (this.product = data));
-    console.log('aaaa');
     this.likeProduct(25, 1);
   }
 
@@ -39,7 +38,6 @@ export class ProductComponent implements OnInit {
   }
 
   likeProduct(id: number, like: number) {
-    console.log(id, like);
     this.store.dispatch(new LikeProductAction({ kind: like, product_id: id }));
   }
 }
