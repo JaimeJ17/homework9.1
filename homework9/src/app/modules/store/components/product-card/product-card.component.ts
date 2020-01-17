@@ -6,6 +6,7 @@ import { Store } from '@ngrx/store';
 import { Router } from '@angular/router';
 import { GetProductAction, LikeProductAction } from '../../../../store/actions/product.actions';
 import { Observable } from 'rxjs';
+import { AddCartAction } from '../../../../store/actions/cart.action';
 
 @Component({
   selector: 'app-product-card',
@@ -23,18 +24,17 @@ export class ProductCardComponent implements OnInit {
       .subscribe(productList =>  this.products = productList);
   }
 
-  call() {
-  }
-
-  back(){
-  }
-
-  openProduct(id: number){
+  openProduct(id: number) {
     this.store.dispatch(new GetProductAction(id));
     this.router.navigate(['product']);
   }
 
+  addCart(id: number, amount: number) {
+    const cartId = new Date();
+    this.store.dispatch(new AddCartAction({id: cartId.getTime(), product_variant_id: id, quantity: amount}));
+  }
+
   likeProduct(id: number, like: number) {
-    /*this.store.dispatch(new LikeProductAction({ kind: like, product_id: id }));*/
+    this.store.dispatch(new LikeProductAction({ kind: like, product_id: id }));
   }
 }
