@@ -32,7 +32,7 @@ import { AngularFireModule } from '@angular/fire';
     EffectsModule.forRoot(appEffects),
     MatSidenavModule,
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
-    AngularFireModule.initializeApp(environment.firebase),
+
 
   ],
   providers: [{
