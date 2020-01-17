@@ -19,10 +19,11 @@ import { RouterModule } from '@angular/router';
 import { MatListModule } from '@angular/material/list';
 import { ProductComponent } from './components/product/product.component';
 import { ProfileComponent } from './components/profile/profile.component';
+import { CartComponent } from './components/cart/cart.component';
 
 
 @NgModule({
-  declarations: [LoginComponent, FormErrorComponent, NavigationComponent, ProductCardComponent, SidebarComponent, ProductComponent, ProfileComponent],
+  declarations: [LoginComponent, FormErrorComponent, NavigationComponent, ProductCardComponent, SidebarComponent, ProductComponent, ProfileComponent, CartComponent],
   imports: [
     CommonModule,
     FormsModule,
