@@ -3,6 +3,7 @@ import { Store } from '@ngrx/store';
 import { IAppState } from 'src/app/store/state/app.state';
 import { CartItems } from '../../../shared/interfaces/cart-items.interface';
 import { getCartItems } from 'src/app/store/selectors/store.selectors';
+import { RemoveFromCartAction } from '../../../../store/actions/cart.action';
 
 @Component({
   selector: 'app-cart',
@@ -20,6 +21,10 @@ export class CartComponent implements OnInit, OnDestroy {
         this.cartList = data;
       }
     );
+  }
+
+  deleteItem(id: number){
+    this.store.dispatch(new RemoveFromCartAction(id));
   }
 
   ngOnDestroy() {
