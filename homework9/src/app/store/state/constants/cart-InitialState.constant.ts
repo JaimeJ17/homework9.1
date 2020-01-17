@@ -5,7 +5,7 @@ export const cartInitialState: Cart = {
   user_id: null,
   number: null,
   status: null,
-  total: null,
+  total: 0,
   total_items: null,
   completed_at: null,
   created_at: null,
