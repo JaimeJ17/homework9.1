@@ -1,1 +1,5 @@
-<p>cart works!</p>
+<div>
+  <mat-card *ngFor="let item of cartList">
+    <mat-card-content>{{ item.product_variant_id }}  {{ item.quantity }} </mat-card-content>
+  </mat-card>
+</div>
