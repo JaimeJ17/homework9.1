@@ -79,7 +79,6 @@ export class ProductEffects {
       of(new LikeProductSuccesstsActions())
     ),
     catchError((error, caugth) => {
-      console.log(error);
       this.store.dispatch(new LikeProductFailureActions(error));
       return caugth;
     })
