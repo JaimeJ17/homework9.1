@@ -6,6 +6,7 @@ import { Observable } from 'rxjs';
 import { Store } from '@ngrx/store';
 import { IAppState } from '../../../../store/state/app.state';
 import { getProduct } from '../../../../store/selectors/store.selectors';
+import { LikeProductAction } from '../../../../store/actions/product.actions';
 
 @Component({
   selector: 'app-product',
@@ -20,6 +21,8 @@ export class ProductComponent implements OnInit {
 
   ngOnInit() {
     this.store.select(getProduct).subscribe(data => (this.product = data));
+    console.log('aaaa');
+    this.likeProduct(25, 1);
   }
 
   add(input: HTMLInputElement) {
@@ -32,5 +35,10 @@ export class ProductComponent implements OnInit {
     input.valueAsNumber === 0
       ? (input.valueAsNumber = 0)
       : (input.valueAsNumber = input.valueAsNumber - 1);
+  }
+
+  likeProduct(id: number, like: number) {
+    console.log(id, like);
+    this.store.dispatch(new LikeProductAction({ kind: like, product_id: id }));
   }
 }

@@ -9,8 +9,8 @@ export interface Cart {
   created_at?: string;
   items?: [
     {
-      id: string;
-      product_variant_id: string;
+      id: number;
+      product_variant_id: number;
       quantity: number;
     }?
   ];

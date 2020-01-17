@@ -14,6 +14,7 @@ import { appEffects } from './store/effects/app.effects';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from '../environments/environment';
+import { AngularFireModule } from '@angular/fire';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,9 @@ import { environment } from '../environments/environment';
     StoreModule.forRoot(reducers),
     EffectsModule.forRoot(appEffects),
     MatSidenavModule,
-    StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production })
+    StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
+    AngularFireModule.initializeApp(environment.firebase),
+
   ],
   providers: [{
     provide: HTTP_INTERCEPTORS,

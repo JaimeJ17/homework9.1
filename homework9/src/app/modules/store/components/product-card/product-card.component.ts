@@ -4,7 +4,7 @@ import { Component, OnInit } from '@angular/core';
 import { IAppState } from 'src/app/store/state/app.state';
 import { Store } from '@ngrx/store';
 import { Router } from '@angular/router';
-import { GetProductAction } from '../../../../store/actions/product.actions';
+import { GetProductAction, LikeProductAction } from '../../../../store/actions/product.actions';
 import { Observable } from 'rxjs';
 
 @Component({
@@ -32,6 +32,9 @@ export class ProductCardComponent implements OnInit {
   openProduct(id: number){
     this.store.dispatch(new GetProductAction(id));
     this.router.navigate(['product']);
+  }
 
+  likeProduct(id: number, like: number) {
+    /*this.store.dispatch(new LikeProductAction({ kind: like, product_id: id }));*/
   }
 }

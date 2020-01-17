@@ -13,7 +13,7 @@ export class AddCartAction implements Action {
 
 export class RemoveFromCartAction implements Action {
   public readonly type = ECartActions.RemoveFromCart;
-  constructor(public payload: string) {}
+  constructor(public payload: number) {}
 }
 
 export type CartActions =

@@ -115,9 +115,14 @@ export class ConnectorService {
   }
 
   like(likedProduct: Like): Observable<Data> {
+    console.log(likedProduct);
+
     this.loading.changeState(true);
+    const data = {
+      data: { kind: likedProduct.kind, product_id: likedProduct.product_id },
+    };
     return this.http
-      .post(like, {data: likedProduct})
+      .post(like, data)
       .pipe(
         finalize(() => {
           this.loading.changeState(false);

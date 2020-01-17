@@ -2,7 +2,8 @@ import {
   GetProductsPerCategoryAction,
   GetProductsPerCategoryFailureAction,
   SearchProductsActions,
-  GetProductsPerCategorySuccessAction
+  GetProductsPerCategorySuccessAction,
+  LikeProductFailureActions
 } from './../actions/product.actions';
 import { Injectable } from '@angular/core';
 import { Effect, Actions, ofType } from '@ngrx/effects';
@@ -21,6 +22,7 @@ import {
   SearchProductsFailureActions
 } from '../actions/product.actions';
 import { Store } from '@ngrx/store';
+import { LikeProductAction, LikeProductSuccesstsActions } from '../actions/product.actions';
 
 @Injectable()
 export class ProductEffects {
@@ -65,6 +67,20 @@ export class ProductEffects {
     ),
     catchError((error, caugth) => {
       this.store.dispatch(new SearchProductsFailureActions(error));
+      return caugth;
+    })
+  );
+
+  @Effect()
+  LikeProducts$ = this.actions.pipe(
+    ofType<LikeProductAction>(EProductActions.LikeProduct),
+    switchMap(like => this.productService.like(like.payload)),
+    switchMap(() =>
+      of(new LikeProductSuccesstsActions())
+    ),
+    catchError((error, caugth) => {
+      console.log(error);
+      this.store.dispatch(new LikeProductFailureActions(error));
       return caugth;
     })
   );

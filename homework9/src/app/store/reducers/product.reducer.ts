@@ -92,6 +92,9 @@ export function productReducer(
     case ECategoryActions.ToggleCategory: {
       return { ...state, toggle: !state.toggle };
     }
+    case EProductActions.LikeProductSuccess: {
+      return { ...state };
+    }
     default:
       return { ...state };
   }

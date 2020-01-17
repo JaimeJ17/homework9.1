@@ -1,6 +1,7 @@
 import { Error } from './../../modules/shared/interfaces/error.interface';
 import { Product } from './../../modules/shared/interfaces/product.interface';
 import { Action } from '@ngrx/store';
+import { Like } from 'src/app/modules/shared/interfaces/like.interface';
 
 export enum EProductActions {
   GetProduct = '[product] Get Product',
@@ -13,6 +14,9 @@ export enum EProductActions {
   SearchProducts = '[Product] Search Products',
   SearchProductsFailure = '[Product] Search Products Failure',
   SearchProductsSuccess = '[Product] Search Products Success',
+  LikeProduct = '[Product] Like Product',
+  LikeProductSuccess = '[Product] Like Product Success',
+  LikeProductFailure = '[Product] Like Product Failure',
 }
 
 export class GetProductAction implements Action {
@@ -73,6 +77,23 @@ export class SearchProductsFailureActions implements Action {
   }
 }
 
+export class LikeProductAction implements Action {
+  public readonly type = EProductActions.LikeProduct;
+  constructor(public payload: Like) {}
+}
+
+export class LikeProductSuccesstsActions implements Action {
+  public readonly type = EProductActions.LikeProductSuccess;
+}
+
+export class LikeProductFailureActions implements Action {
+  public readonly type = EProductActions.LikeProductFailure;
+  public payload: Error;
+  constructor(error: any) {
+    this.payload = error;
+  }
+}
+
 export type ProductActions =
   | GetProductAction
   | GetProductsPerCategoryAction
@@ -83,4 +104,7 @@ export type ProductActions =
   | GetProductsFailureAction
   | SearchProductsActions
   | SearchProductsSuccesstsActions
-  | SearchProductsFailureActions;
+  | SearchProductsFailureActions
+  | LikeProductAction
+  | LikeProductSuccesstsActions
+  | LikeProductFailureActions;
