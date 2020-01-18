@@ -8,6 +8,7 @@ import { IAppState } from '../../../../store/state/app.state';
 import { getProduct } from '../../../../store/selectors/store.selectors';
 import { LikeProductAction } from '../../../../store/actions/product.actions';
 import { MatInput } from '@angular/material/input';
+import { AddCartAction } from 'src/app/store/actions/cart.action';
 
 @Component({
   selector: 'app-product',
@@ -18,7 +19,7 @@ export class ProductComponent implements OnInit {
   product: Product;
   canLike$: Observable<boolean> = this.store.select(getLoginToken);
 
-  constructor(private store: Store<IAppState>, private router: Router) {}
+  constructor(private store: Store<IAppState>, private router: Router) { }
 
   ngOnInit() {
     this.store.select(getProduct).subscribe(data => (this.product = data));
@@ -39,5 +40,21 @@ export class ProductComponent implements OnInit {
 
   likeProduct(id: number, like: number) {
     this.store.dispatch(new LikeProductAction({ kind: like, product_id: id }));
+  }
+
+  addCart(id: number, input: MatInput, name: string, url: string, price: string
+  ) {
+    const amount = Number(input.value);
+    const cartId = new Date();
+    this.store.dispatch(
+      new AddCartAction({
+        id: cartId.getTime(),
+        product_variant_id: id,
+        quantity: amount,
+        price: price,
+        url: url,
+        name: name
+      })
+    );
   }
 }

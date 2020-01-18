@@ -1,0 +1,25 @@
+.items{
+  display: flex;
+  flex-direction: column;
+}
+
+.item{
+  display: flex;
+  margin-bottom: 10px;
+}
+
+.item-header{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.image-item{
+  width: 100px;
+  height: 100px;
+}
+
+.item-cart{
+  display: flex;
+  flex-direction: column;
+}

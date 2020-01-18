@@ -1,20 +1,23 @@
 <div>
-  <span>
-    {{ total$ | async | currency }}
-  </span>
   <button mat-button [routerLink]="['/home']">
     <mat-icon>arrow_back</mat-icon>
   </button>
-  <mat-card *ngFor="let item of cartList">
-    <mat-card-header>
-      <img [src]="item.url" alt="" srcset="">
-      <mat-card-title>
-        {{ item.name }}
-      </mat-card-title>
-    </mat-card-header>
-
-    <mat-card-content
-      >{{ item.product_variant_id }} {{ item.quantity }} <mat-icon (click)="deleteItem(item.id)">delete</mat-icon>
-    </mat-card-content>
-  </mat-card>
+  <span>
+    {{ total$ | async | currency }}
+  </span>
+  <div class="items">
+    <mat-card class="item" *ngFor="let item of cartList">
+      <mat-card-header class="item-header">
+        <img class="image-item" [src]="item.url" alt="" srcset="" />
+        <mat-card-title>
+          {{ item.name }}
+        </mat-card-title>
+      </mat-card-header>
+      <mat-card-content class="item-cart">
+        <span> Quantity: {{ item.quantity }}</span>
+        <span> price: {{ item.price | currency }} </span>
+        <mat-icon (click)="deleteItem(item.id)">delete</mat-icon>
+      </mat-card-content>
+    </mat-card>
+  </div>
 </div>
