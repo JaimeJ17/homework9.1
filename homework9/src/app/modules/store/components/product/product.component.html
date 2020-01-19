@@ -20,7 +20,7 @@
     </button>
   </mat-card-actions>
   <mat-card-actions>
-    <button mat-button (click)="addCart(product.id, items, product.name,product.image.url,product.master.price)">
+    <button mat-button [disabled]="items.value==='0'" (click)="addCart(product.id, items, product.name,product.image.url,product.master.price)">
       <mat-icon>add_shopping_cart</mat-icon>
     </button>
     <button mat-button color="primary" (click)="likeProduct(product.id,1)"  [disabled]="!(canLike$ | async)">
