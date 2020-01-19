@@ -17,22 +17,10 @@ export function productReducer(
   action: ProductActions | CategoryActions | CartActions | LoginActions
 ): IProductState {
   switch (action.type) {
-    case EProductActions.GetProductsSuccess: {
-      return { ...state, products: action.payload, error: null };
-    }
     case EProductActions.GetProductsPerCategorySuccess: {
       return {
         ...state,
         products: action.payload
-      };
-    }
-    case EProductActions.GetProduct: {
-      return {
-        ...state,
-        currentProduct: state.products.find(
-          prodcut => prodcut.id === action.payload
-        ),
-        error: null
       };
     }
     case EProductActions.SearchProductsSuccess: {
@@ -44,31 +32,6 @@ export function productReducer(
     }
     case ECategoryActions.GetCategorysSuccess: {
       return { ...state, categories: action.payload, error: null };
-    }
-    case ECartActions.AddCart: {
-      return {
-        ...state,
-        cart: Object.assign(state.cart, {
-          total:
-            state.cart.total +
-            (Number(action.payload.price) * Number(action.payload.quantity)),
-          items: [...state.cart.items, action.payload]
-        })
-      };
-    }
-    case ECartActions.RemoveFromCart: {
-      const newValue = state.cart.items.find(
-        item => item.id === action.payload
-      );
-      return {
-        ...state,
-        cart: Object.assign(state.cart, {
-          total:
-            state.cart.total -
-            (Number(newValue.price) * Number(newValue.quantity)),
-          items: state.cart.items.filter(items => items.id !== action.payload)
-        })
-      };
     }
     case ELoginActions.GetLoginsSuccess: {
       return {
