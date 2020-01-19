@@ -1,4 +1,4 @@
-import { ToggleCategoryAction } from './../../../../store/actions/category.action';
+import { ToggleCategoryAction, GetCategoriesAction } from './../../../../store/actions/category.action';
 import { getLoginToken, getCartLenght } from './../../../../store/selectors/store.selectors';
 import { Observable } from 'rxjs';
 import { GetProductsAction, SearchProductsActions } from './../../../../store/actions/product.actions';
@@ -21,11 +21,11 @@ export class NavigationComponent implements OnInit {
   displayUser = false;
 
 
-  constructor(private store: Store<IAppState>, private router: Router) { }
+  constructor(private store: Store<any>) { }
 
   ngOnInit() {
-    this.store.dispatch(new GetCategoryAction());
     this.store.dispatch(new GetProductsAction());
+    this.store.dispatch(new GetCategoriesAction());
   }
 
   search(searchBar: HTMLButtonElement){
