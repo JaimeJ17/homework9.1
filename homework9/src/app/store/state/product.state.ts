@@ -6,7 +6,7 @@ import { User } from 'src/app/modules/shared/interfaces/user.interface';
 import { cartInitialState } from './constants/cart-InitialState.constant';
 import { tokenState } from './constants/token-initialState.constant';
 import { userState } from './constants/user-initialState.constant';
-import { loginState } from './constants/login-initialState.constant';
+import { loginInitialState } from './constants/login-initialState.constant';
 
 export interface IProductState {
   products: Product[];
@@ -24,6 +24,6 @@ export const initialProductSate: IProductState = {
   categories: [],
   currentProduct: null,
   cart: cartInitialState,
-  login: loginState,
+  login: loginInitialState,
   toggle: false
 };
