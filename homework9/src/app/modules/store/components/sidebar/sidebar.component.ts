@@ -1,3 +1,4 @@
+import { GetCategoriesAction } from './../../../../store/actions/category.action';
 import { getCategories } from './../../../../store/selectors/store.selectors';
 import { GetProductsPerCategoryAction } from './../../../../store/actions/product.actions';
 import { Category } from './../../../shared/interfaces/category.interface';
@@ -8,6 +9,9 @@ import { Observable } from 'rxjs';
 import { htmlAstToRender3Ast } from '@angular/compiler/src/render3/r3_template_transform';
 import { MatDrawer } from '@angular/material/sidenav';
 import { ChildActivationStart } from '@angular/router';
+import { state } from '@angular/animations';
+import * as fromCateogry from 'src/app/store/reducers/my-Category.reducer';
+
 
 @Component({
   selector: 'app-sidebar',
@@ -16,14 +20,12 @@ import { ChildActivationStart } from '@angular/router';
 })
 export class SidebarComponent implements OnInit {
 
-  categories$: Observable<Category[]>;
+  categories$: Observable<Category[]> = this.store.select(fromCateogry.selectAll);
   change: boolean;
 
-  constructor(private store: Store<IAppState>) { }
+  constructor(private store: Store<any>) { }
 
   ngOnInit() {
-    this.categories$ = this.store.select(getCategories);
-    this.store.select(state => state.myStore.toggle).subscribe(data => this.change = data);
   }
 
   filterProducts(slug: string) {
