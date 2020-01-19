@@ -1,3 +1,4 @@
+import { AddTotalCartAction } from './../../../../store/actions/cart.action';
 import { Router } from '@angular/router';
 import { getLoginToken } from './../../../../store/selectors/store.selectors';
 import { Product } from './../../../shared/interfaces/product.interface';
@@ -19,11 +20,10 @@ export class ProductComponent implements OnInit {
   product: Product;
   canLike$: Observable<boolean> = this.store.select(getLoginToken);
 
-  constructor(private store: Store<IAppState>, private router: Router) { }
+  constructor(private store: Store<any>, private router: Router) { }
 
   ngOnInit() {
     this.store.select(getProduct).subscribe(data => (this.product = data));
-    this.likeProduct(25, 1);
   }
 
   add(input: MatInput) {
@@ -33,7 +33,7 @@ export class ProductComponent implements OnInit {
   }
 
   remove(input: MatInput) {
-    Number(input.value) === this.product.master.stock
+    Number(input.value) === 0
       ? (input.value = '0')
       : (input.value = (Number(input.value) - 1).toString());
   }
@@ -46,6 +46,7 @@ export class ProductComponent implements OnInit {
   ) {
     const amount = Number(input.value);
     const cartId = new Date();
+    this.store.dispatch(new AddTotalCartAction(amount * Number(price)));
     this.store.dispatch(
       new AddCartAction({
         id: cartId.getTime(),
