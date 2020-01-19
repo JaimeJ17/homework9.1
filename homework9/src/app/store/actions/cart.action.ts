@@ -4,6 +4,9 @@ import { CartItems } from '../../modules/shared/interfaces/cart-items.interface'
 export enum ECartActions {
   AddCart = '[Cart] Add Cart',
   RemoveFromCart = '[Cart] Remove From Cart',
+  AddTotal = '[Cart]  Add Cart Total',
+  RemoveTotal = '[Cart] Remove Cart Total',
+  ModifyCart = '[Cart] Modify Cart'
 }
 
 export class AddCartAction implements Action {
@@ -11,12 +14,29 @@ export class AddCartAction implements Action {
   constructor(public payload: CartItems) {}
 }
 
+export class AddTotalCartAction implements Action {
+  public readonly type = ECartActions.AddTotal;
+  constructor(public payload: number) {}
+}
 
 export class RemoveFromCartAction implements Action {
   public readonly type = ECartActions.RemoveFromCart;
   constructor(public payload: number) {}
 }
 
+export class RemoveTotalCartAction implements Action {
+  public readonly type = ECartActions.RemoveTotal;
+  constructor(public payload: number) {}
+}
+
+export class ModifyCartAction implements Action {
+  public readonly type = ECartActions.ModifyCart;
+  constructor(public payload: CartItems) {}
+}
+
 export type CartActions =
   | AddCartAction
-  | RemoveFromCartAction;
+  | RemoveFromCartAction
+  | AddTotalCartAction
+  | ModifyCartAction
+  | RemoveTotalCartAction;
