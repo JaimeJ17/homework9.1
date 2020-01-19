@@ -1,17 +1,21 @@
+import { CartState } from './../reducers/my-Cart.reducer';
+import { ProductState } from './../reducers/my-Product.reducer';
 import { IAppState } from '../state/app.state';
 import { createSelector } from '@ngrx/store';
 import { IProductState } from '../state/product.state';
 
 export const getProductSate = (state: IAppState) => state.myStore;
+export const getProducsState = (state: IAppState) => state.product;
+export const getCartState = (state: IAppState) => state.cart;
+export const getLoginState = (state: IAppState) => state.login;
+
 
 export const getProducts = createSelector(
   getProductSate,
   (state: IProductState) => state.products,
 );
 
-export const getProduct = createSelector(
-  getProductSate,
-  (state: IProductState) => state.currentProduct,
+export const getProduct = createSelector(getProducsState, (state: ProductState) => state.currentProduct,
 );
 
 export const getCategories = createSelector(
@@ -20,17 +24,17 @@ export const getCategories = createSelector(
 );
 
 export const getCartLenght = createSelector(
-  getProductSate,
-  (state: IProductState) => state.cart.items.length,
+  getCartState,
+  (state: CartState) => state.ids.length,
 );
 
 export const getLoginToken = createSelector(
-  getProductSate,
+  getLoginState,
   (state: IProductState) => !!state.login.token,
 );
 
 export const getUser = createSelector(
-  getProductSate,
+  getLoginState,
   (state: IProductState) => state.login.user,
 );
 
@@ -40,11 +44,12 @@ export const getCartItems = createSelector(
 );
 
 export const getCartTotal = createSelector(
-  getProductSate,
-  (state: IProductState) => state.cart.total,
+  getCartState,
+  (state: CartState) => state.total,
 );
 
+
 export const getEmail = createSelector(
-  getProductSate,
+  getLoginState,
   (state: IProductState) => state.login.user.email,
 );
