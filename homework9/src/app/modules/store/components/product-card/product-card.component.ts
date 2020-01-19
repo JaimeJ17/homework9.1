@@ -11,8 +11,12 @@ import {
   GetProductAction,
   LikeProductAction
 } from '../../../../store/actions/product.actions';
-import { Observable } from 'rxjs';
-import { AddCartAction } from '../../../../store/actions/cart.action';
+import { Observable, from } from 'rxjs';
+import { AddCartAction, AddTotalCartAction } from '../../../../store/actions/cart.action';
+import * as fromProduct from 'src/app/store/reducers/my-Product.reducer';
+import { timingSafeEqual } from 'crypto';
+
+
 
 @Component({
   selector: 'app-product-card',
@@ -26,8 +30,7 @@ export class ProductCardComponent implements OnInit {
   constructor(private store: Store<IAppState>, private router: Router) {}
 
   ngOnInit() {
-    this.store
-      .select(getProducts)
+    this.store.select(fromProduct.selectAll)
       .subscribe(productList => (this.products = productList));
   }
 
@@ -44,6 +47,7 @@ export class ProductCardComponent implements OnInit {
     price: string
   ) {
     const cartId = new Date();
+    this.store.dispatch(new AddTotalCartAction(Number(price)));
     this.store.dispatch(
       new AddCartAction({
         id: cartId.getTime(),
