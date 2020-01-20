@@ -6,7 +6,7 @@
 
 <mat-drawer (toggleEvent)="drawer.toggle()" #drawer id='sidenav' class="product-sidenav" mode="side">
   <mat-list>
-    <mat-list-item (click)='filterProducts(category.slug)' *ngFor="let category of categories$ | async"> {{ category.name }} </mat-list-item>
+    <mat-list-item (click)='filterProducts(category.slug, category.name)' *ngFor="let category of categories$ | async"> {{ category.name }} </mat-list-item>
    </mat-list>
 </mat-drawer>
 
