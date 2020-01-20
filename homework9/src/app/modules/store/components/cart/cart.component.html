@@ -13,12 +13,12 @@
           {{ item.name }}
         </mat-card-title>
       </mat-card-header>
-      <mat-card-content class="item-cart">
+      <mat-card-content class="item-cart-info">
         <span> Quantity: {{ item.quantity }}</span>
         <span> price: {{ item.price | currency }} </span>
         <mat-icon (click)="deleteItem(item.id, item.price, item.quantity)">delete</mat-icon>
       </mat-card-content>
-      <mat-card-actions>
+      <mat-card-actions class="item-options">
         <button mat-button (click)="add(items, item.id, item.price, item.quantity)">
             <mat-icon>add</mat-icon>
         </button>
