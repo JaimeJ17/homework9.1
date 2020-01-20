@@ -14,16 +14,24 @@ import { ProductCardComponent } from './components/product-card/product-card.com
 import { MatIconModule } from '@angular/material/icon';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
-import { AppRoutingModule } from 'src/app/app-routing.module';
 import { RouterModule } from '@angular/router';
 import { MatListModule } from '@angular/material/list';
 import { ProductComponent } from './components/product/product.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { CartComponent } from './components/cart/cart.component';
-
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 @NgModule({
-  declarations: [LoginComponent, FormErrorComponent, NavigationComponent, ProductCardComponent, SidebarComponent, ProductComponent, ProfileComponent, CartComponent],
+  declarations: [
+    LoginComponent,
+    FormErrorComponent,
+    NavigationComponent,
+    ProductCardComponent,
+    SidebarComponent,
+    ProductComponent,
+    ProfileComponent,
+    CartComponent
+  ],
   imports: [
     CommonModule,
     FormsModule,
@@ -37,11 +45,9 @@ import { CartComponent } from './components/cart/cart.component';
     MatSidenavModule,
     MatListModule,
     RouterModule,
+    MatSnackBarModule,
     StoreRoutingModule
   ],
-  exports: [
-    NavigationComponent,
-    SidebarComponent
-  ]
+  exports: [NavigationComponent, SidebarComponent]
 })
-export class AppStoreModule { }
+export class AppStoreModule {}
