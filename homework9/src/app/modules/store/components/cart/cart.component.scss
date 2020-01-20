@@ -19,7 +19,13 @@
   height: 100px;
 }
 
-.item-cart{
+.item-cart-info{
   display: flex;
   flex-direction: column;
+  justify-content: center;
+}
+
+.item-options{
+  display: flex;
+  align-items: center;
 }
