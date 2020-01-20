@@ -4,13 +4,9 @@ import { Data } from './../interfaces/data.interface';
 import { product, category, productCategory, productSearch, like } from './../constants/url.constant';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { throwError, Observable } from 'rxjs';
-import { catchError, finalize } from 'rxjs/operators';
+import { Observable } from 'rxjs';
 import { login } from '../constants/url.constant';
 import { User } from '../interfaces/user.interface';
-import { Response } from '../interfaces/response.interface';
-import { LoadingService } from './loading.service';
-
 
 
 @Injectable({
@@ -18,116 +14,41 @@ import { LoadingService } from './loading.service';
 })
 export class ConnectorService {
 
-  constructor(private http: HttpClient, private loading: LoadingService) { }
-
-  register(user: User): Observable<Response> {
-    this.loading.changeState(true);
-    return this.http
-      .post( login, {data: user})
-      .pipe(
-        finalize(() => {
-          this.loading.changeState(false);
-        }),
-        catchError(() => {
-          this.loading.changeState(false);
-          return throwError(null);
-        })
-      );
-  }
+  constructor(private http: HttpClient) { }
 
   login(user: User): Observable<LoginResponse> {
-
-    this.loading.changeState(true);
     return this.http
-      .post(login, {data: user})
-     /*.pipe(
-        finalize(() => {
-          this.loading.changeState(false);
-        }),
-        catchError(() => {
-          this.loading.changeState(false);
-          return throwError(false);
-        })
-      );*/
+      .post(login, { data: user });
   }
 
   product(): Observable<Data> {
-    this.loading.changeState(true);
     return this.http
-      .get(product)
-      .pipe(
-        finalize(() => {
-          this.loading.changeState(false);
-        }),
-        catchError(() => {
-          this.loading.changeState(false);
-          return throwError(false);
-        })
-      );
+      .get(product);
   }
 
   productCategory(filter: string): Observable<Data> {
     const url = productCategory.replace('newfilter', filter);
-    this.loading.changeState(true);
     return this.http
-      .get(url)
-      .pipe(
-        finalize(() => {
-          this.loading.changeState(false);
-        }),
-        catchError(() => {
-          this.loading.changeState(false);
-          return throwError(false);
-        })
-      );
+      .get(url);
   }
 
   productSearch(filter: string): Observable<Data> {
     const url = productSearch.replace('newfilter', filter);
-    this.loading.changeState(true);
     return this.http
-      .get(url)
-      .pipe(
-        finalize(() => {
-          this.loading.changeState(false);
-        }),
-        catchError(() => {
-          this.loading.changeState(false);
-          return throwError(false);
-        })
-      );
+      .get(url);
+
   }
 
   category(): Observable<Data> {
-    this.loading.changeState(true);
     return this.http
-      .get(category)
-      .pipe(
-        finalize(() => {
-          this.loading.changeState(false);
-        }),
-        catchError(() => {
-          this.loading.changeState(false);
-          return throwError(null);
-        })
-      );
+      .get(category);
   }
 
   like(likedProduct: Like): Observable<Data> {
-    this.loading.changeState(true);
     const data = {
       data: { kind: likedProduct.kind, product_id: likedProduct.product_id },
     };
     return this.http
-      .post(like, data)
-      .pipe(
-        finalize(() => {
-          this.loading.changeState(false);
-        }),
-        catchError(() => {
-          this.loading.changeState(false);
-          return throwError(null);
-        })
-      );
+      .post(like, data);
   }
 }
