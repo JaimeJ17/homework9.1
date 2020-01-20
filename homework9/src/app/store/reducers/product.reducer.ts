@@ -17,50 +17,11 @@ export function productReducer(
   action: ProductActions | CategoryActions | CartActions | LoginActions
 ): IProductState {
   switch (action.type) {
-    case EProductActions.GetProductsPerCategorySuccess: {
-      return {
-        ...state,
-        products: action.payload
-      };
-    }
-    case EProductActions.SearchProductsSuccess: {
-      return {
-        ...state,
-        products: action.payload,
-        error: null
-      };
-    }
-    case ECategoryActions.GetCategorysSuccess: {
-      return { ...state, categories: action.payload, error: null };
-    }
-    case ELoginActions.GetLoginsSuccess: {
-      return {
-        ...state,
-        login: action.payload
-      };
-    }
-    case ELoginActions.GetLoginsFailure: {
-      storage.removefile('user');
-      storage.removefile('token');
-      return {
-        ...state,
-        login: { user: userState, token: tokenState }
-      };
-    }
-    case ELoginActions.LogOut: {
-      storage.removefile('user');
-      storage.removefile('token');
-      return {
-        ...state,
-        login: { user: userState, token: tokenState }
-      };
-    }
+
     case ECategoryActions.ToggleCategory: {
       return { ...state, toggle: !state.toggle };
     }
-    case EProductActions.LikeProductSuccess: {
-      return { ...state };
-    }
+
     default:
       return { ...state };
   }
