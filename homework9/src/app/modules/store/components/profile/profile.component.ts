@@ -1,3 +1,4 @@
+import { CleanCartAction, ResetTotalCartAction } from './../../../../store/actions/cart.action';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { LogOutAction } from './../../../../store/actions/login.action';
@@ -29,6 +30,8 @@ export class ProfileComponent implements OnInit , OnDestroy{
   logOut() {
     this.closeProfile.emit(null);
     this.store.dispatch(new LogOutAction());
+    this.store.dispatch(new CleanCartAction());
+    this.store.dispatch(new ResetTotalCartAction());
     this.router.navigate(['/home']);
   }
 
