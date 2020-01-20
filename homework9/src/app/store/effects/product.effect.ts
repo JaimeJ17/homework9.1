@@ -23,6 +23,7 @@ import {
 } from '../actions/product.actions';
 import { Store } from '@ngrx/store';
 import { LikeProductAction, LikeProductSuccesstsActions } from '../actions/product.actions';
+import { GetErrorAction } from '../actions/error.actions';
 
 @Injectable()
 export class ProductEffects {
@@ -79,7 +80,7 @@ export class ProductEffects {
       of(new LikeProductSuccesstsActions())
     ),
     catchError((error, caugth) => {
-      this.store.dispatch(new LikeProductFailureActions(error));
+      this.store.dispatch(new GetErrorAction(error.error));
       return caugth;
     })
   );
