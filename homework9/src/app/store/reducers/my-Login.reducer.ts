@@ -1,3 +1,4 @@
+import { userInitialState } from './../state/constants/user-initialState.constant';
 import { loginInitialState } from './../state/constants/login-initialState.constant';
 import { Login } from './../../modules/shared/interfaces/login.interface';
 import { LocalstorageService } from 'src/app/modules/shared/services/localstorage.service';
@@ -42,7 +43,7 @@ export function loginReducer(
       storage.removefile('token');
       return {
         ...state,
-        login: { user: userState, token: tokenState }
+        login: { user: userInitialState, token: null }
       };
     }
     default:
