@@ -1,20 +1,18 @@
+import { IAppState } from './../../../../store/state/app.state';
 import {
-  getProducts,
-  getLoginToken
+  getLoginToken,
+  getFilterProducts
 } from './../../../../store/selectors/store.selectors';
 import { Product } from './../../../shared/interfaces/product.interface';
 import { Component, OnInit } from '@angular/core';
-import { IAppState } from 'src/app/store/state/app.state';
 import { Store } from '@ngrx/store';
 import { Router } from '@angular/router';
 import {
   GetProductAction,
   LikeProductAction
 } from '../../../../store/actions/product.actions';
-import { Observable, from } from 'rxjs';
+import { Observable } from 'rxjs';
 import { AddCartAction, AddTotalCartAction } from '../../../../store/actions/cart.action';
-import * as fromProduct from 'src/app/store/reducers/my-Product.reducer';
-import { timingSafeEqual } from 'crypto';
 
 
 
@@ -30,7 +28,7 @@ export class ProductCardComponent implements OnInit {
   constructor(private store: Store<IAppState>, private router: Router) {}
 
   ngOnInit() {
-    this.store.select(fromProduct.selectAll)
+    this.store.select(getFilterProducts)
       .subscribe(productList => (this.products = productList));
   }
 
