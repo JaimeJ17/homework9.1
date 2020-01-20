@@ -3,10 +3,10 @@ import { LocalstorageService } from '../../../modules/shared/services/localstora
 
 const storage: LocalstorageService = new LocalstorageService();
 
-const state: User = {
+export const userInitialState: User = {
   email: null,
   password: null,
 }
 
 
-export const userState: User = !!storage.loadfile('user') ? storage.loadfile('user') : state;
+export const userState: User = !!storage.loadfile('user') ? storage.loadfile('user') : userInitialState;
