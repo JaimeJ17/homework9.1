@@ -40,6 +40,14 @@ export function cartReducer(state: CartState = initialCartState, action: CartAct
       return cartAdapter.updateOne({id: action.payload.id, changes: action.payload}, state);
     }
 
+    case ECartActions.ResetTotal: {
+      return {...state, total: 0};
+    }
+
+    case ECartActions.CleanCart: {
+      return cartAdapter.removeAll(state);
+    }
+
     default: {
       return {... state};
     }
