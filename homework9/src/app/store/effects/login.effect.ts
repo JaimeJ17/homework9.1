@@ -1,3 +1,4 @@
+import { GetErrorAction } from './../actions/error.actions';
 import { Injectable } from '@angular/core';
 import { Effect, Actions, ofType } from '@ngrx/effects';
 import { ConnectorService } from '../../modules/shared/services/connector.service';
@@ -35,7 +36,7 @@ export class LoginEffects {
       return of(new GetLoginSuccessAction(user.data));
     }),
     catchError((error, caugth) => {
-      this.store.dispatch(new GetLoginFailureAction(error));
+      this.store.dispatch(new GetErrorAction(error.error));
       return caugth;
     }),
   );
