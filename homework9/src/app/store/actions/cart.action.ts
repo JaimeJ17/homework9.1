@@ -6,7 +6,9 @@ export enum ECartActions {
   RemoveFromCart = '[Cart] Remove From Cart',
   AddTotal = '[Cart]  Add Cart Total',
   RemoveTotal = '[Cart] Remove Cart Total',
-  ModifyCart = '[Cart] Modify Cart'
+  ModifyCart = '[Cart] Modify Cart',
+  ResetTotal = '[Cart] Reset Total',
+  CleanCart = '[Cart] Clean Cart'
 }
 
 export class AddCartAction implements Action {
@@ -34,9 +36,19 @@ export class ModifyCartAction implements Action {
   constructor(public payload: CartItems) {}
 }
 
+export class CleanCartAction implements Action {
+  public readonly type = ECartActions.CleanCart;
+}
+
+export class ResetTotalCartAction implements Action {
+  public readonly type = ECartActions.ResetTotal;
+}
+
 export type CartActions =
   | AddCartAction
   | RemoveFromCartAction
   | AddTotalCartAction
   | ModifyCartAction
+  | ResetTotalCartAction
+  | CleanCartAction
   | RemoveTotalCartAction;
