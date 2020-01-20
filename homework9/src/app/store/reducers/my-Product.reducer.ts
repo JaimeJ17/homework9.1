@@ -1,10 +1,8 @@
-import { state } from '@angular/animations';
 import { EProductActions } from './../actions/product.actions';
 import { Product } from './../../modules/shared/interfaces/product.interface';
 import { createEntityAdapter, EntityState } from '@ngrx/entity';
 import { createFeatureSelector } from '@ngrx/store';
 import { ProductActions } from '../actions/product.actions';
-import { ACTIONS_SUBJECT_PROVIDERS } from '@ngrx/store/src/actions_subject';
 
 
 export const productAdapter = createEntityAdapter<Product>();

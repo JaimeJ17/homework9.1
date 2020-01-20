@@ -25,7 +25,7 @@ export class LoginComponent implements OnInit {
   loginCheck() {
     this.store.dispatch(new GetLoginAction(this.buildUser()));
     setTimeout(() => {
-      this.route.navigate(['/login']);
+      this.route.navigate(['/home']);
     }, 1000);
   }
 

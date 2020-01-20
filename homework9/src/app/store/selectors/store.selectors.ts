@@ -19,7 +19,7 @@ export const getProducts = createSelector(
 
 export const getError = createSelector(
   getErrorState,
-  (state: ErrorState) => state.error ? state.error.errors : state.error,
+  (state: ErrorState) => state.error.errors,
 );
 
 export const getProduct = createSelector(getProducsState, (state: ProductState) => state.currentProduct,

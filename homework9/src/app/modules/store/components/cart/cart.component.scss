@@ -1,3 +1,5 @@
+@import "media_for_all_sizes.scss";
+
 .items{
   display: flex;
   flex-direction: column;
@@ -6,6 +8,10 @@
 .item{
   display: flex;
   margin-bottom: 10px;
+
+  @include for-phone-only(){
+    flex-direction: column;
+  }
 }
 
 .item-header{
@@ -28,4 +34,10 @@
 .item-options{
   display: flex;
   align-items: center;
+
+  mat-form-field{
+    @include for-phone-only(){
+      width: 100px;
+    }
+  }
 }
