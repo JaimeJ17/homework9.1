@@ -1,13 +1,11 @@
+import { MatInput } from '@angular/material/input';
 import { ToggleCategoryAction, GetCategoriesAction } from './../../../../store/actions/category.action';
-import { getLoginToken, getCartLenght } from './../../../../store/selectors/store.selectors';
+import { getLoginToken, getCartLenght, getError } from './../../../../store/selectors/store.selectors';
 import { Observable } from 'rxjs';
-import { GetProductsAction, SearchProductsActions } from './../../../../store/actions/product.actions';
-import { IAppState } from 'src/app/store/state/app.state';
+import { GetProductsAction, SearchProductsActions, FilterProductNameAction } from './../../../../store/actions/product.actions';
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { GetCategoryAction } from 'src/app/store/actions/category.action';
-import { Router } from '@angular/router';
-import { EventEmitter } from 'protractor';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 
 @Component({
@@ -21,15 +19,25 @@ export class NavigationComponent implements OnInit {
   displayUser = false;
 
 
-  constructor(private store: Store<any>) { }
+  constructor(private store: Store<any>, private snackBar: MatSnackBar) { }
 
   ngOnInit() {
     this.store.dispatch(new GetProductsAction());
     this.store.dispatch(new GetCategoriesAction());
+    this.store.select(getError).subscribe(
+      error => {
+        if (error.length > 0) {
+          this.snackBar.open(error[0] ? error[0].message : 'Something Happen', 'Error', {
+            duration: 2000,
+          });
+        }
+      }
+    );
   }
 
-  search(searchBar: HTMLButtonElement){
+  search(searchBar: MatInput) {
     this.store.dispatch(new SearchProductsActions(searchBar.value));
+    this.store.dispatch(new FilterProductNameAction(searchBar.value));
   }
 
   toggle() {
