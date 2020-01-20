@@ -44,7 +44,8 @@ export class CategoriesEffects {
       of(new GetCategoriesSuccessAction(categories.data))
     ),
     catchError((error, caugth) => {
-      this.store.dispatch(new GetErrorAction(error.error));
+      console.log(error);
+      this.store.dispatch(new GetErrorAction(error ? error.error : error));
       return caugth;
     })
   );

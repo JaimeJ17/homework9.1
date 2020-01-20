@@ -26,7 +26,7 @@ export class NavigationComponent implements OnInit {
     this.store.dispatch(new GetCategoriesAction());
     this.store.select(getError).subscribe(
       error => {
-        if (error.length > 0) {
+        if (error) {
           this.snackBar.open(error[0] ? error[0].message : 'Something Happen', 'Error', {
             duration: 2000,
           });
