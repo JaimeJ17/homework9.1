@@ -5,6 +5,9 @@
   <span>
     Total: {{ total$ | async | currency }}
   </span>
+  <button mat-button [disabled]="cartList.length === 0" (click)="finish()">
+    CHECKOUT
+</button>
   <div class="items">
     <mat-card class="item" *ngFor="let item of cartList">
       <mat-card-header class="item-header">

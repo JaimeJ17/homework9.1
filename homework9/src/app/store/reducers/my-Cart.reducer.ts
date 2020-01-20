@@ -44,6 +44,10 @@ export function cartReducer(state: CartState = initialCartState, action: CartAct
       return {...state, total: 0};
     }
 
+    case ECartActions.SaveCartSuccess: {
+      return {...state};
+    }
+
     case ECartActions.CleanCart: {
       return cartAdapter.removeAll(state);
     }

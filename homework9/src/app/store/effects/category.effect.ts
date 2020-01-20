@@ -3,16 +3,14 @@ import { Effect, Actions, ofType } from '@ngrx/effects';
 import { ConnectorService } from '../../modules/shared/services/connector.service';
 
 import { switchMap, catchError } from 'rxjs/operators';
-import { from, of } from 'rxjs';
+import { of } from 'rxjs';
 import {
   GetCategoryAction,
   GetCategorysSuccessAction,
   GetCategorysFailureAction,
   ECategoryActions,
   GetCategoriesAction,
-  GetCategoriesSuccessAction,
-  GetCategoriesFailureAction
-} from '../actions/category.action';
+  GetCategoriesSuccessAction} from '../actions/category.action';
 import { IAppState } from '../state/app.state';
 import { Store } from '@ngrx/store';
 import { GetErrorAction } from '../actions/error.actions';
@@ -44,7 +42,6 @@ export class CategoriesEffects {
       of(new GetCategoriesSuccessAction(categories.data))
     ),
     catchError((error, caugth) => {
-      console.log(error);
       this.store.dispatch(new GetErrorAction(error ? error.error : error));
       return caugth;
     })
