@@ -15,6 +15,7 @@ import {
 } from '../actions/category.action';
 import { IAppState } from '../state/app.state';
 import { Store } from '@ngrx/store';
+import { GetErrorAction } from '../actions/error.actions';
 
 @Injectable()
 export class CategoriesEffects {
@@ -43,7 +44,7 @@ export class CategoriesEffects {
       of(new GetCategoriesSuccessAction(categories.data))
     ),
     catchError((error, caugth) => {
-      this.store.dispatch(new GetCategoriesFailureAction(error));
+      this.store.dispatch(new GetErrorAction(error.error));
       return caugth;
     })
   );
