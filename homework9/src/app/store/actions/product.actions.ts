@@ -8,6 +8,8 @@ export enum EProductActions {
   GetProductsPerCategory = '[Product] Get Products per Category',
   GetProductsPerCategorySuccess = '[Product] Get Products per Category Success',
   GetProductsPerCategoryFailure = '[Product] Get Products per Category Failure',
+  SaveFilterCategory = '[Product] new Product FIlter',
+  SaveFilterSearch = '[Product] new Product search',
   GetProducts = '[Product] Get Products',
   GetProductsFailure = '[Product] Get Products Failure',
   GetProductsSuccess = '[Product] Get Products Success',
@@ -26,6 +28,16 @@ export class GetProductAction implements Action {
 
 export class GetProductsPerCategoryAction implements Action {
   public readonly type = EProductActions.GetProductsPerCategory;
+  constructor(public payload: string) {}
+}
+
+export class FilterProductCategoryAction implements Action {
+  public readonly type = EProductActions.SaveFilterCategory;
+  constructor(public payload: string) {}
+}
+
+export class FilterProductNameAction implements Action {
+  public readonly type = EProductActions.SaveFilterSearch;
   constructor(public payload: string) {}
 }
 
@@ -107,4 +119,6 @@ export type ProductActions =
   | SearchProductsFailureActions
   | LikeProductAction
   | LikeProductSuccesstsActions
-  | LikeProductFailureActions;
+  | LikeProductFailureActions
+  | FilterProductCategoryAction
+  | FilterProductNameAction;
