@@ -1,3 +1,4 @@
+import { ErrorState } from './../reducers/my-Error.reducer';
 import { LoginState } from './../reducers/my-Login.reducer';
 import { CartState } from './../reducers/my-Cart.reducer';
 import { ProductState } from './../reducers/my-Product.reducer';
@@ -10,6 +11,7 @@ export interface IAppState {
   product?: ProductState;
   cart?: CartState;
   login?: LoginState;
+  error?: ErrorState;
 
 }
 
