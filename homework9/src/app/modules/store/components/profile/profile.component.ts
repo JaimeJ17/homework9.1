@@ -13,19 +13,13 @@ import { getEmail } from '../../../../store/selectors/store.selectors';
   templateUrl: './profile.component.html',
   styleUrls: ['./profile.component.scss']
 })
-export class ProfileComponent implements OnInit , OnDestroy{
+export class ProfileComponent {
   @Output() closeProfile: EventEmitter<any> = new EventEmitter();
 
   user$: Observable<string> = this.store.select(getEmail);
 
   constructor(private store: Store<IAppState>, private router: Router) { }
 
-  ngOnInit() {
-  }
-
-  ngOnDestroy(){
-
-    }
 
   logOut() {
     this.closeProfile.emit(null);
@@ -35,7 +29,7 @@ export class ProfileComponent implements OnInit , OnDestroy{
     this.router.navigate(['/home']);
   }
 
-  close(){
+  close() {
     this.closeProfile.emit(null);
   }
 }
