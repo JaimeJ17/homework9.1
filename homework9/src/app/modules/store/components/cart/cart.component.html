@@ -19,14 +19,14 @@
       <mat-card-content class="item-cart-info">
         <span> Quantity: {{ item.quantity }}</span>
         <span> price: {{ item.price | currency }} </span>
-        <mat-icon (click)="deleteItem(item.id, item.price, item.quantity)">delete</mat-icon>
+        <mat-icon class="trashcan" (click)="deleteItem(item.id, item.price, item.quantity)">delete</mat-icon>
       </mat-card-content>
       <mat-card-actions class="item-options">
         <button mat-button (click)="add(items, item.id, item.price, item.quantity)">
             <mat-icon>add</mat-icon>
         </button>
         <mat-form-field>
-          <input #items matInput type='number' readonly [value]="item.quantity" min="0" placeholder="Quantity"/>
+          <input #items class="amount-input" matInput type='number' readonly [value]="item.quantity" min="0" placeholder="Quantity"/>
         </mat-form-field>
         <button mat-button (click)="remove(items, item.id, item.price, item.quantity)">
           <mat-icon>remove</mat-icon>

@@ -4,15 +4,15 @@
     <img [routerLink]="['/home']" class="logo" src="../../../../../assets/aplaud.png" alt="" />
   </div>
   <div class="search-bar">
-    <mat-icon (click)="search(searchBar)">search</mat-icon>
+    <mat-icon class="search-icon" (click)="search(searchBar)">search</mat-icon>
     <mat-form-field>
-      <input #searchBar matInput (keyup.enter)="search(searchBar)" />
+      <input class="searchbar-input" #searchBar matInput (keyup.enter)="search(searchBar)" />
     </mat-form-field>
   </div>
   <div class="login-options">
     <mat-icon [routerLink]="['/cart']">shopping_cart</mat-icon>
     <span class="cart-length">{{ cartLength$ | async }}</span>
-    <app-profile *ngIf="displayUser" (closeProfile)="changeProfile()" ></app-profile>
+    <app-profile class="profile" *ngIf="displayUser" (closeProfile)="changeProfile()" ></app-profile>
     <div *ngIf="isLogged$ | async" (click)="changeProfile()" mat-card-avatar class="card-header-image">
 
     </div>

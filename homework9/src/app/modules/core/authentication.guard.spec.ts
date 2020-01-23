@@ -7,44 +7,47 @@ import { Router } from '@angular/router';
 class RouterStub {
   navigate() {}
 }
-let fakeToken = false;
-class FakeStorage  {
-  tokenStatus(identifier: string) {
-    return fakeToken;
-  }
 
-  changeStatus() {
-    fakeToken = !fakeToken;
+class FakeStorage  {
+  value = false;
+
+  tokenStatus(identifier: string) {
+    this.value = !this.value;
+    return this.value;
   }
 }
 
 
 fdescribe('AuthenticationGuard', () => {
   let guardService: AuthenticationGuard;
+
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [AuthenticationGuard, {provide: Router, useClass: RouterStub}, {provide: LocalstorageService, useClass: FakeStorage},]
+      providers: [AuthenticationGuard, {provide: Router, useClass: RouterStub}, {provide: LocalstorageService, useClass: FakeStorage}, ]
     });
   });
   beforeEach(() => {
     guardService = TestBed.get(AuthenticationGuard);
-  })
+  });
 
   it('should ...', inject([AuthenticationGuard], (guard: AuthenticationGuard) => {
     expect(guard).toBeTruthy();
   }));
 
   it('guard should not activate due to user not logged', () => {
+    guardService.canActivate();
     expect(guardService.canActivate()).toBeTruthy();
   });
 
-  it('guard should  activate due to user logged', () => {
-    let storage = new FakeStorage();
-    storage.changeStatus();
-    storage.changeStatus();
+  it('guard should activate due to user logged', () => {
     expect(guardService.canActivate()).toBeFalsy();
   });
 
-
-
+  it('guard should redirect to home', () => {
+    const router = TestBed.get(Router);
+    const spy = spyOn(router, 'navigate');
+    guardService.canActivate();
+    guardService.canActivate();
+    expect(spy) .toHaveBeenCalledWith(['home']);
+  });
 });

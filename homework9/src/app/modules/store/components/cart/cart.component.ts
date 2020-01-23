@@ -20,10 +20,10 @@ import { MatSnackBar } from '@angular/material/snack-bar';
   templateUrl: './cart.component.html',
   styleUrls: ['./cart.component.scss']
 })
-export class CartComponent implements OnInit, OnDestroy {
+export class CartComponent implements OnInit{
   cartList: CartItems[];
   total$: Observable<number> = this.store.select(getCartTotal);
-  MyUser: User;
+  myUser: User;
 
   constructor(private store: Store<any>, private router: Router, private snackBar: MatSnackBar) { }
 
@@ -35,7 +35,7 @@ export class CartComponent implements OnInit, OnDestroy {
     );
     this.store.select(getUser).subscribe(
       user => {
-        this.MyUser = user;
+        this.myUser = user;
       }
     )
   }
@@ -68,12 +68,12 @@ export class CartComponent implements OnInit, OnDestroy {
 
   finish() {
     let cart: Array<any> = [];
-    if (this.MyUser.email) {
+    if (this.myUser.email) {
       this.cartList.forEach(item => {
         cart = [...cart, {id: item.product_variant_id, product_variant_id: item.product_variant_id, quantity: item.quantity}];
       });
       const cartId: Date = new Date();
-      this.store.dispatch(new SaveCartAction({id: cartId.getTime(), user_id: this.MyUser.id, items: cart}));
+      this.store.dispatch(new SaveCartAction({id: cartId.getTime(), user_id: this.myUser.id, items: cart}));
       this.snackBar.open( 'Checkout Complete', 'YAY ', {
         duration: 2000,
       });
@@ -85,6 +85,5 @@ export class CartComponent implements OnInit, OnDestroy {
   }
 
 
-  ngOnDestroy() {
-  }
+
 }
