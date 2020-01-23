@@ -5,7 +5,7 @@ import { LocalstorageService } from './localstorage.service';
 fdescribe('LocalstorageService', () => {
   beforeEach(() => TestBed.configureTestingModule({}));
 
-  beforeEach(() =>{
+  beforeEach(() => {
     let value: string;
     const fakeStorage = {
       setItem(identifier: string , data: string) {
@@ -19,11 +19,11 @@ fdescribe('LocalstorageService', () => {
       removeItem(identifier: string) {
         value = null;
       },
-    }
+    };
     spyOn(localStorage, 'setItem').and.callFake(fakeStorage.setItem);
     spyOn(localStorage, 'getItem').and.callFake(fakeStorage.getItem);
     spyOn(localStorage, 'removeItem').and.callFake(fakeStorage.removeItem);
-  })
+  });
 
   it('should be created', () => {
     const service: LocalstorageService = TestBed.get(LocalstorageService);
@@ -54,7 +54,7 @@ fdescribe('LocalstorageService', () => {
 
   it('remove should be called when activated', () => {
     const service: LocalstorageService = TestBed.get(LocalstorageService);
-    const spy = spyOn(service,'removefile');
+    const spy = spyOn(service, 'removefile');
     service.removefile('nothing');
     expect(spy).toHaveBeenCalled();
   });
@@ -76,7 +76,7 @@ fdescribe('LocalstorageService', () => {
 
   it('loadfile should return null', () => {
     const service: LocalstorageService = TestBed.get(LocalstorageService);
-    service.savefile('nothing','not');
+    service.savefile('nothing', 'not');
     service.removefile('not');
     const value = service.loadfile('nothing');
     expect(value).toBe(null);

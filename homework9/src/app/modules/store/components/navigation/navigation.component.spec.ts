@@ -133,3 +133,4 @@ fdescribe('NavigationComponent', () => {
     expect(spy).toHaveBeenCalledTimes(1);
   });
 });
+
