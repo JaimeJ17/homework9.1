@@ -10,17 +10,17 @@ export interface Product {
   published_at?: string;
 
   master?: {
-    id: string;
-    sku: string;
-    price: string;
-    promotional_price: string;
-    stock: number;
-    weight: string;
-    height: string;
-    width: string;
-    depth: string;
-    is_master: string;
-    position: string;
+    id?: string;
+    sku?: string;
+    price?: string;
+    promotional_price?: string;
+    stock?: number;
+    weight?: string;
+    height?: string;
+    width?: string;
+    depth?: string;
+    is_master?: string;
+    position?: string;
   };
 
   category?: {
@@ -29,7 +29,7 @@ export interface Product {
     name: string;
   };
   image?: {
-    id: string;
+    id?: string;
     url: string;
   };
 }

@@ -36,7 +36,6 @@ export class ConnectorService {
     const url = productSearch.replace('newfilter', filter);
     return this.http
       .get(url);
-
   }
 
   category(): Observable<Data> {

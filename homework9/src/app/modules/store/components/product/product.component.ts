@@ -42,9 +42,10 @@ export class ProductComponent implements OnInit {
     this.store.dispatch(new LikeProductAction({ kind: like, product_id: id }));
   }
 
-  addCart(id: number, input: MatInput, name: string, url: string, price: string
+  addCart(id: number, input: string, name: string, url: string, price: string
   ) {
-    const amount = Number(input.value);
+    console.log(input);
+    const amount = Number(input);
     const cartId = new Date();
     this.store.dispatch(new AddTotalCartAction(amount * Number(price)));
     this.store.dispatch(

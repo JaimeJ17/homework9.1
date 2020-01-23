@@ -9,25 +9,25 @@
     <img [src]="product.image.url" alt="" srcset="" />
   </div>
   <mat-card-actions>
-    <button mat-button (click)="add(items)">
+    <button class="add-item" mat-button (click)="add(items)">
         <mat-icon>add</mat-icon>
     </button>
     <mat-form-field>
-      <input #items matInput type='number' readonly value="0" min="0" placeholder="Quantity"/>
+      <input #items matInput class="amount-input" type='number' readonly value="0" min="0" placeholder="Quantity"/>
     </mat-form-field>
-    <button mat-button (click)="remove(items)">
+    <button class="remove-item" mat-button (click)="remove(items)">
       <mat-icon>remove</mat-icon>
     </button>
   </mat-card-actions>
   <mat-card-actions>
-    <button mat-button [disabled]="items.value==='0'" (click)="addCart(product.id, items, product.name,product.image.url,product.master.price)">
+    <button mat-button [disabled]="items.value==='0'" (click)="addCart(product.id, items.value, product.name,product.image.url,product.master.price)">
       <mat-icon>add_shopping_cart</mat-icon>
     </button>
-    <button mat-button color="primary" (click)="likeProduct(product.id,1)"  [disabled]="!(canLike$ | async)">
+    <button mat-button color="primary" (click)="likeProduct(product.id,1)" class="like"  [disabled]="!(canLike$ | async)">
       <mat-icon>thumb_up</mat-icon>
       <span> {{ product.likes_up_count }} </span>
     </button>
-    <button mat-button color="primary" (click)="likeProduct(product.id,0)" [disabled]="!(canLike$ | async)">
+    <button mat-button color="primary" (click)="likeProduct(product.id,0)" class="dislike" [disabled]="!(canLike$ | async)">
       <mat-icon>thumb_down</mat-icon>
       <span> {{ product.likes_down_count }}</span>
     </button>

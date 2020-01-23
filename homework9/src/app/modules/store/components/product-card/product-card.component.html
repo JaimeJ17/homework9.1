@@ -3,18 +3,18 @@
     <mat-card-header>
       <mat-card-title>{{ product.name }}</mat-card-title>
     </mat-card-header>
-    <img (click)="openProduct(product.id)" mat-card-image [src]="product.image?.url" alt="Photo of a Shiba Inu" />
+    <img class="product-img" (click)="openProduct(product.id)" mat-card-image [src]="product.image?.url" alt="Photo of a Shiba Inu" />
     <mat-card-content>
       Price: {{ product.master.price | currency  }}
     </mat-card-content>
     <mat-card-actions class="card-bottom">
-      <button mat-button (click)="addCart(product.id, 1, product.name,product.image.url,product.master.price)">
+      <button class="cart" mat-button (click)="addCart(product.id, 1, product.name,product.image.url,product.master.price)">
         <mat-icon>add_shopping_cart </mat-icon>
       </button>
-      <button (click)="likeProduct(product.id, 1)" mat-button [disabled]="!(canLike$ | async)">
+      <button class="like" (click)="likeProduct(product.id, 1)" mat-button [disabled]="!(canLike$ | async)">
         <mat-icon>thumb_up</mat-icon>
       </button>
-      <button (click)="likeProduct(product.id, 0)" mat-button [disabled]="!(canLike$ | async)">
+      <button class="dislike" (click)="likeProduct(product.id, 0)" mat-button [disabled]="!(canLike$ | async)">
         <mat-icon>thumb_down</mat-icon>
       </button>
     </mat-card-actions>
