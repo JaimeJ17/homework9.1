@@ -1,8 +1,8 @@
-import { ECategoryActions } from "./../actions/category.action";
-import { Category } from "./../../modules/shared/interfaces/category.interface";
-import { createEntityAdapter, EntityState } from "@ngrx/entity";
-import { CategoryActions } from "../actions/category.action";
-import { createFeatureSelector, createSelector } from "@ngrx/store";
+import { ECategoryActions } from './../actions/category.action';
+import { Category } from './../../modules/shared/interfaces/category.interface';
+import { createEntityAdapter, EntityState } from '@ngrx/entity';
+import { CategoryActions } from '../actions/category.action';
+import { createFeatureSelector, createSelector } from '@ngrx/store';
 
 export const categoryAdapter = createEntityAdapter<Category>();
 export interface CategoryState extends EntityState<Category> {}
@@ -32,7 +32,7 @@ export function categoryReducer(
 }
 
 export const getCategoryState = createFeatureSelector<CategoryState>(
-  "category"
+  'category'
 );
 
 export const {

@@ -122,7 +122,7 @@ fdescribe('NavigationComponent', () => {
   it('toggle method should dispatch once', () => {
     const store = TestBed.get(Store);
     const spy = spyOn(store, 'dispatch');
-    component.toggle()
+    component.toggle();
     expect(spy).toHaveBeenCalledTimes(1);
   });
 });

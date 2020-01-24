@@ -12,7 +12,7 @@ const defaultError: ErrorState = {
 };
 
 
-export function errorReducer(state: ErrorState = defaultError, action: GetErrorAction): ErrorState{
+export function errorReducer(state: ErrorState = defaultError, action: GetErrorAction): ErrorState {
   switch (action.type) {
     case EErrorActions.GetError: {
       return { ...state, error: action.payload };
