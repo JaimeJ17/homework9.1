@@ -11,35 +11,48 @@ import { LayoutComponent } from './components/layout/layout.component';
 
 const routes: Routes = [
   {
-    path: '',
+    path: 'login',
     component: LayoutComponent,
     children: [
       {
-        path: 'login',
+        path: '',
         component: LoginComponent,
         canActivate: [AuthenticationGuard],
         data: {animation:  'login'}
       },
-      {
-        path: 'home',
-        component: SidebarComponent,
-        data: {animation:  'home'}
-      },
-      {
-        path: 'cart',
-        component: CartComponent,
-        data: {animation:  'cart'}
-      },
-      {
-        path: 'product',
-        component: ProductComponent,
-        data: {animation:  'product'}
-      },
+    ]
+  },
+  {
+    path: 'home',
+    component: LayoutComponent,
+    children: [
       {
         path: '',
         component: SidebarComponent,
         data: {animation:  'home'}
+      },
+    ]
+  },
+  {
+    path: 'cart',
+    component: LayoutComponent,
+    children: [
+      {
+        path: '',
+        component: CartComponent,
+        data: {animation:  'cart'}
       }
+    ]
+  },
+  {
+    path: 'product',
+    component: LayoutComponent,
+    children: [
+      {
+        path: '',
+        component: ProductComponent,
+        data: {animation:  'product'}
+      },
     ]
   }
 ];
