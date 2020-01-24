@@ -5,30 +5,42 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { AuthenticationGuard } from '../core/authentication.guard';
 import { CartComponent } from './components/cart/cart.component';
+import { LayoutComponent } from './components/layout/layout.component';
 
 
 
 const routes: Routes = [
   {
-    path: 'login',
-    component: LoginComponent,
-    canActivate: [AuthenticationGuard]
-  },
-  {
-    path: 'home',
-    component: SidebarComponent
-  },
-  {
-    path: 'cart',
-    component: CartComponent
-  },
-  {
-    path: 'product',
-    component: ProductComponent
-  },
-  {
     path: '',
-    component: SidebarComponent
+    component: LayoutComponent,
+    children: [
+      {
+        path: 'login',
+        component: LoginComponent,
+        canActivate: [AuthenticationGuard],
+        data: {animation:  'login'}
+      },
+      {
+        path: 'home',
+        component: SidebarComponent,
+        data: {animation:  'home'}
+      },
+      {
+        path: 'cart',
+        component: CartComponent,
+        data: {animation:  'cart'}
+      },
+      {
+        path: 'product',
+        component: ProductComponent,
+        data: {animation:  'product'}
+      },
+      {
+        path: '',
+        component: SidebarComponent,
+        data: {animation:  'home'}
+      }
+    ]
   }
 ];
 

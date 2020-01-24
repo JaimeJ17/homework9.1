@@ -13,19 +13,34 @@ import {
 } from '../../../../store/actions/product.actions';
 import { Observable } from 'rxjs';
 import { AddCartAction, AddTotalCartAction } from '../../../../store/actions/cart.action';
+import { trigger, transition, query, stagger, animate, style, state } from '@angular/animations';
 
 
 
 @Component({
   selector: 'app-product-card',
   templateUrl: './product-card.component.html',
-  styleUrls: ['./product-card.component.scss']
+  styleUrls: ['./product-card.component.scss'],
+  animations: [
+    trigger('fadeIn', [
+
+      transition('* => *', [
+        query(':enter', [
+          style({ opacity: 0, transform: 'scale(0.3)' }),
+          stagger(100, [
+            animate('0.5s', style({ opacity: 1, transform: 'scale(1)'}))
+          ])
+        ], {optional: true}),
+      ])
+
+    ])
+  ]
 })
 export class ProductCardComponent implements OnInit {
   products: Product[];
   canLike$: Observable<boolean> = this.store.select(getLoginToken);
 
-  constructor(private store: Store<IAppState>, private router: Router) {}
+  constructor(private store: Store<IAppState>, private router: Router) { }
 
   ngOnInit() {
     this.store.select(getFilterProducts)

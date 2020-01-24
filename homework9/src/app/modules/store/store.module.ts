@@ -1,3 +1,4 @@
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { StoreRoutingModule } from './app-store-routing.module';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -20,6 +21,8 @@ import { ProductComponent } from './components/product/product.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { CartComponent } from './components/cart/cart.component';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { slideInAnimation } from '../shared/constants/slide.constant';
+import { LayoutComponent } from './components/layout/layout.component';
 
 @NgModule({
   declarations: [
@@ -30,6 +33,7 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
     SidebarComponent,
     ProductComponent,
     ProfileComponent,
+    LayoutComponent,
     CartComponent
   ],
   imports: [
@@ -48,6 +52,7 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
     MatSnackBarModule,
     StoreRoutingModule
   ],
-  exports: [NavigationComponent, SidebarComponent]
+  exports: [NavigationComponent, SidebarComponent, LayoutComponent]
+
 })
 export class AppStoreModule {}

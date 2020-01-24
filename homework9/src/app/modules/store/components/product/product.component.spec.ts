@@ -98,9 +98,25 @@ fdescribe('ProductComponent', () => {
     expect(input.value).toBe('1');
   }));
 
+  it('Add should not increase the value when is at the max stock limit ', async (() => {
+    const input = fixture.debugElement.nativeElement.querySelector('.amount-input');
+    input.value = 99;
+    component.add(input);
+    fixture.detectChanges();
+    expect(input.value).toBe('99');
+  }));
+
   it('remove should decrease value of input by 1 ', async (() => {
     const input = fixture.debugElement.nativeElement.querySelector('.amount-input');
     input.value = 1;
+    component.remove(input);
+    fixture.detectChanges();
+    expect(input.value).toBe('0');
+  }));
+
+  it('remove should not decrease the value of the input when its 0 ', async (() => {
+    const input = fixture.debugElement.nativeElement.querySelector('.amount-input');
+    input.value = 0;
     component.remove(input);
     fixture.detectChanges();
     expect(input.value).toBe('0');

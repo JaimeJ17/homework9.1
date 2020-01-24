@@ -76,7 +76,6 @@ fdescribe('NavigationComponent', () => {
   });
 
   it('logo should redirect to home', () => {
-    const router = TestBed.get(Router);
     const logo = fixture.debugElement.nativeElement.querySelector('.logo');
     logo.click();
     fixture.detectChanges();
