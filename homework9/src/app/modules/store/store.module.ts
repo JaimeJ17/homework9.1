@@ -21,7 +21,7 @@ import { ProductComponent } from './components/product/product.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { CartComponent } from './components/cart/cart.component';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
-import { slideInAnimation } from '../shared/constants/slide.constant';
+import { sliderAnimation } from '../shared/constants/slide.constant';
 import { LayoutComponent } from './components/layout/layout.component';
 
 @NgModule({
