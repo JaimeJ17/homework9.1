@@ -54,7 +54,11 @@ const routes: Routes = [
         data: {animation:  'product'}
       },
     ]
-  }
+  },
+  { path: '',
+    redirectTo: 'home',
+    pathMatch: 'full'
+  },
 ];
 
 @NgModule({
