@@ -1,13 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { slideInAnimation } from '../../../shared/constants/slide.constant';
+import { sliderAnimation } from '../../../shared/constants/slide.constant';
 
 @Component({
   selector: 'app-layout',
   templateUrl: './layout.component.html',
   styleUrls: ['./layout.component.scss'],
   animations: [
-    slideInAnimation
+    sliderAnimation
   ]
 })
 export class LayoutComponent implements OnInit {

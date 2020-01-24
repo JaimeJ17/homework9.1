@@ -75,12 +75,6 @@ fdescribe('NavigationComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('logo should redirect to home', () => {
-    const logo = fixture.debugElement.nativeElement.querySelector('.logo');
-    logo.click();
-    fixture.detectChanges();
-  });
-
   it('avatar should change the display state of the profile', () => {
     const spy = spyOn(component, 'changeProfile');
     const avatar = fixture.debugElement.nativeElement.querySelector('.card-header-image');
