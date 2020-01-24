@@ -1,13 +1,13 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { slideInAnimation } from './modules/shared/constants/slide.constant';
+import { sliderAnimation } from './modules/shared/constants/slide.constant';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
   animations: [
-    slideInAnimation
+    sliderAnimation
   ]
 })
 export class AppComponent {
